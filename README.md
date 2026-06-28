@@ -11,25 +11,37 @@ The design is intentionally split into stages:
 ## Design goals
 
 - Minimal footprint close to the standard charging station area.
+- No internal maneuvering area: the robot docks and undocks along one fixed trajectory.
+- About 1500 mm of straight, level, obstacle-free path must remain in front of the charging station.
 - Separate robot bay from storage/service compartment.
 - Removable or hinged roof for access to documentation, power supplies, spare parts, and maintenance items.
 - Buildable with basic tools, without CNC.
 - Main structure assembled on timber battens rather than precision plywood slots.
 - Printable facade graphics for stone, slate roof, stained glass, and decorative shadows.
 
+## Technical reference dimensions
+
+Reference dimensions to verify against the actual Luba 3 AWD installation:
+
+| Item | Length | Width | Height |
+|---|---:|---:|---:|
+| LUBA 2 AWD robot | 690 mm | 513 mm | 273 mm |
+| Charging base / station MTL23CHS0001 | 610 mm | 570 mm | 350 mm |
+| Minimum shelter internal size | 900 mm | 600 mm | 500 mm |
+
 ## Baseline dimensions
 
 Recommended external footprint:
 
-- **Length:** 1200 mm
-- **Width:** 1000 mm
+- **Length:** 1000–1200 mm
+- **Width:** 800–1000 mm
 - **Overall visual height:** 1300–1500 mm with false floors and tower
 
 Recommended robot bay:
 
-- **Internal length:** approx. 1080 mm
-- **Internal width:** approx. 860 mm
-- **Robot bay working height:** approx. 600–650 mm
+- **Internal length:** 900–1080 mm
+- **Internal width:** 600–860 mm
+- **Robot bay working height:** 500–650 mm
 - **Gate opening:** approx. 700 mm wide × 420 mm high
 
 The gate does not need to be cathedral-height. It only needs to allow safe Luba entry and exit.
