@@ -21,6 +21,8 @@ The project should be practical first and decorative second. The mower must be p
 ## Key requirements
 
 - Minimal footprint around the charging station.
+- No internal maneuvering area is required: the robot docks and undocks along one fixed trajectory.
+- Keep about 1500 mm of straight, level, obstacle-free approach path in front of the charging station.
 - Separate robot bay and service/storage area.
 - Removable or hinged roof.
 - Dedicated place for power supply, spare parts, and documentation.
