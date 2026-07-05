@@ -25,26 +25,43 @@ Reference dimensions to verify against the actual Luba 3 AWD installation:
 
 | Item | Length | Width | Height |
 |---|---:|---:|---:|
+| Measured minimum clear envelope | 850 mm | 650 mm | 450 mm |
+| Baseline lower box external size | 1050 mm | 760 mm | 470 mm |
+| Baseline lower box approximate clear size | ~1026 mm | ~736 mm | ~470 mm |
+
+Older reference data retained for context:
+
+| Item | Length | Width | Height |
+|---|---:|---:|---:|
 | LUBA 2 AWD robot | 690 mm | 513 mm | 273 mm |
 | Charging base / station MTL23CHS0001 | 610 mm | 570 mm | 350 mm |
-| Minimum shelter internal size | 900 mm | 600 mm | 500 mm |
 
 ## Baseline dimensions
 
-Recommended external footprint:
+Recommended external footprint for the lower functional box:
 
-- **Length:** 1000–1200 mm
-- **Width:** 800–1000 mm
-- **Overall visual height:** 1300–1500 mm with false floors and tower
+- **Length:** 1050 mm
+- **Width:** 760 mm
+- **Robot bay working height:** 470 mm
+
+Recommended visual upper module:
+
+- **Gable rise above lower box:** 280–320 mm
+- **Roof footprint:** approx. 1090 × 820 mm with small overhangs
+- **Optional square tower:** 220–280 mm wide
 
 Recommended robot bay:
 
-- **Internal length:** 900–1080 mm
-- **Internal width:** 600–860 mm
-- **Robot bay working height:** 500–650 mm
-- **Gate opening:** approx. 700 mm wide × 420 mm high
+- **Internal length:** approx. 1026 mm
+- **Internal width:** approx. 736 mm
+- **Robot bay working height:** approx. 470 mm
+- **Gate opening:** functional low mower entry, not cathedral-height
 
-The gate does not need to be cathedral-height. It only needs to allow safe Luba entry and exit.
+The front lower box ratio is approximately 760 / 470 = 1.617, close to the golden ratio. This creates a stable visual base for the hinged gable roof and optional tower.
+
+## Cut sheets
+
+- [Baseline lower box cut sheet — 1250 × 2500 mm](cut-sheets/baseline-lower-box-1250x2500.md)
 
 ## Internal layout
 
@@ -83,4 +100,4 @@ images/          Renders, construction photos, examples
 
 ## Current status
 
-Concept and first documentation draft. Exact charging pad dimensions should be verified on the real Luba 3 AWD installation before final cut files are treated as production-ready.
+Concept and first documentation draft. The measured minimum clear envelope is now 850 × 650 × 450 mm. Baseline lower box cut sheet added for a 1250 × 2500 mm plywood sheet. Final cut files still require verification against the real Luba 3 AWD charging station and installation site before production.
