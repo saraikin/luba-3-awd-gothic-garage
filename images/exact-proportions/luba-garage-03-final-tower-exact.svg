@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1150" viewBox="0 0 1700 1150">
+
+<style>
+  .solid { stroke:#111; stroke-width:2; fill:#f5f5f5; }
+  .roof { stroke:#111; stroke-width:2; fill:#e8e8e8; }
+  .tower { stroke:#111; stroke-width:2; fill:#f0f0f0; }
+  .dash { stroke:#444; stroke-width:1.5; fill:none; stroke-dasharray:7 5; }
+  .dim { stroke:#111; stroke-width:1.2; fill:none; marker-start:url(#arrow); marker-end:url(#arrow); }
+  .ext { stroke:#777; stroke-width:1; fill:none; }
+  .txt { font-family:Arial, sans-serif; font-size:18px; fill:#111; }
+  .small { font-family:Arial, sans-serif; font-size:14px; fill:#111; }
+  .title { font-family:Arial, sans-serif; font-size:24px; font-weight:700; fill:#111; }
+  .note { font-family:Arial, sans-serif; font-size:13px; fill:#333; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1700" height="1150" fill="white"/>
+<text class="title" x="40" y="45">Luba 3 AWD garage — final proportional version with gable roof and square tower</text>
+<text class="note" x="40" y="72">Exact calculated assembly: lower box 1050×760×470; roof 1090×820, rise 300; tower footprint 250×250, body 405, spire 125; total height 1300 mm.</text>
+<text class="txt" x="120" y="120">Front view</text>
+<rect class="solid" x="120" y="777.9" width="326.8" height="202.1"/>
+<polygon class="roof" points="107.1,777.9 283.4,648.9 459.70000000000005,777.9"/>
+<rect class="tower" x="229.64999999999998" y="474.75" width="107.5" height="174.15"/>
+<polygon class="roof" points="229.64999999999998,474.75 283.4,421.0 337.15,474.75"/>
+<rect class="dash" x="143.65" y="786.5" width="279.5" height="193.5"/>
+<text class="small" x="283.4" y="811.5" text-anchor="middle">minimum clear front 650×450</text>
+<line class="dim" x1="120" y1="1020" x2="446.8" y2="1020"/><text class="small" x="283.4" y="1012" text-anchor="middle">box 760 mm</text>
+<line class="dim" x1="107.1" y1="765.9" x2="459.70000000000005" y2="765.9"/><text class="small" x="283.40000000000003" y="755.9" text-anchor="middle">roof 820 mm</text>
+<line class="dim" x1="229.64999999999998" y1="466.75" x2="337.15" y2="466.75"/><text class="small" x="283.4" y="456.75" text-anchor="middle">tower 250 mm</text>
+<line class="dim" x1="514.7" y1="777.9" x2="514.7" y2="980"/><text class="small" x="526.7" y="878.95" text-anchor="start" dominant-baseline="middle">470 mm</text>
+<line class="dim" x1="564.7" y1="648.9" x2="564.7" y2="777.9"/><text class="small" x="576.7" y="713.4" text-anchor="start" dominant-baseline="middle">300 mm</text>
+<line class="dim" x1="614.7" y1="474.75" x2="614.7" y2="648.9"/><text class="small" x="626.7" y="561.825" text-anchor="start" dominant-baseline="middle">405 mm</text>
+<line class="dim" x1="664.7" y1="421.0" x2="664.7" y2="474.75"/><text class="small" x="676.7" y="447.875" text-anchor="start" dominant-baseline="middle">125 mm</text>
+<line class="dim" x1="729.7" y1="421.0" x2="729.7" y2="980"/><text class="small" x="741.7" y="700.5" text-anchor="start" dominant-baseline="middle">total 1300 mm</text>
+<text class="txt" x="850" y="120">Side view / centered tower on ridge</text>
+<rect class="solid" x="850" y="777.9" width="451.5" height="202.1"/>
+<rect class="roof" x="841.4" y="648.9" width="468.7" height="129.0" opacity="0.75"/>
+<rect class="tower" x="1022.0" y="474.75" width="107.5" height="174.15"/>
+<polygon class="roof" points="1022.0,474.75 1075.75,421.0 1129.5,474.75"/>
+<line class="dim" x1="850" y1="1020" x2="1301.5" y2="1020"/><text class="small" x="1075.75" y="1012" text-anchor="middle">box 1050 mm</text>
+<line class="dim" x1="841.4" y1="623.9" x2="1310.1" y2="623.9"/><text class="small" x="1075.75" y="615.9" text-anchor="middle">roof 1090 mm</text>
+<line class="dim" x1="1022.0" y1="466.75" x2="1129.5" y2="466.75"/><text class="small" x="1075.75" y="456.75" text-anchor="middle">tower footprint 250 mm</text>
+<line class="dim" x1="1355.1" y1="421.0" x2="1355.1" y2="980"/><text class="small" x="1367.1" y="700.5" text-anchor="start" dominant-baseline="middle">total 1300 mm</text>
+<text class="note" x="850" y="1060">Tower body height = 250 × 1.618 ≈ 405 mm; spire rise = 125 mm; final height = 1300 mm.</text>
+</svg>
