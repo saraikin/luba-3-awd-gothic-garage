@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="850" viewBox="0 0 1700 850">
+
+<style>
+  .solid { stroke:#111; stroke-width:2; fill:#f5f5f5; }
+  .roof { stroke:#111; stroke-width:2; fill:#e8e8e8; }
+  .tower { stroke:#111; stroke-width:2; fill:#f0f0f0; }
+  .dash { stroke:#444; stroke-width:1.5; fill:none; stroke-dasharray:7 5; }
+  .dim { stroke:#111; stroke-width:1.2; fill:none; marker-start:url(#arrow); marker-end:url(#arrow); }
+  .ext { stroke:#777; stroke-width:1; fill:none; }
+  .txt { font-family:Arial, sans-serif; font-size:18px; fill:#111; }
+  .small { font-family:Arial, sans-serif; font-size:14px; fill:#111; }
+  .title { font-family:Arial, sans-serif; font-size:24px; font-weight:700; fill:#111; }
+  .note { font-family:Arial, sans-serif; font-size:13px; fill:#333; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1700" height="850" fill="white"/>
+<text class="title" x="40" y="45">Luba 3 AWD Gothic Garage — exact proportional sequence</text>
+<text class="note" x="40" y="72">Same scale for all three front projections. Lower box 760×470; roof width 820, rise 300; tower 250×405+125. Final height 1300 mm.</text>
+<text class="txt" x="120" y="130">1. Lower box</text>
+<rect class="solid" x="120" y="569.6" width="243.20000000000002" height="150.4"/>
+<line class="dim" x1="120" y1="752" x2="363.20000000000005" y2="752"/><text class="small" x="241.60000000000002" y="744" text-anchor="middle">760 mm</text>
+<text class="txt" x="650" y="130">2. Lower box + gable roof</text>
+<rect class="solid" x="650" y="569.6" width="243.20000000000002" height="150.4"/>
+<polygon class="roof" points="640.4,569.6 771.5999999999999,473.6 902.8,569.6"/>
+<line class="dim" x1="650" y1="752" x2="893.2" y2="752"/><text class="small" x="771.6" y="744" text-anchor="middle">760 mm</text>
+<text class="txt" x="1180" y="130">3. Final with square tower</text>
+<rect class="solid" x="1180" y="569.6" width="243.20000000000002" height="150.4"/>
+<polygon class="roof" points="1170.4,569.6 1301.6000000000001,473.6 1432.8000000000002,569.6"/>
+<rect class="tower" x="1261.6000000000001" y="344.0" width="80.0" height="129.6"/>
+<polygon class="roof" points="1261.6000000000001,344.0 1301.6000000000001,304.0 1341.6000000000001,344.0"/>
+<line class="dim" x1="1518.2" y1="304.0" x2="1518.2" y2="720"/><text class="small" x="1530.2" y="512.0" text-anchor="start" dominant-baseline="middle">1300 mm</text>
+<line class="dim" x1="1180" y1="752" x2="1423.2" y2="752"/><text class="small" x="1301.6" y="744" text-anchor="middle">760 mm</text>
+</svg>
