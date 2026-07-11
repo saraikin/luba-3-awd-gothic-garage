@@ -6,7 +6,7 @@ The design is intentionally split into stages:
 
 1. **Stage 1: functional protection** — plywood box, roof, weather protection, safe robot entry, charging station access.
 2. **Stage 2: facade and windows** — printed outdoor vinyl film, optional window cut-outs, acrylic inserts, warm LED lighting.
-3. **Stage 3: Gothic decor** — false floors, tower, spires, rose window, arches, columns, erkers/bay-window modules, 3D-printed elements.
+3. **Stage 3: Gothic decor** — false floors, wide tower, spires, rose window, arches, columns, erkers/bay-window modules, 3D-printed elements.
 
 ## Design goals
 
@@ -26,8 +26,8 @@ Reference dimensions to verify against the actual Luba 3 AWD installation:
 | Item | Length | Width | Height |
 |---|---:|---:|---:|
 | Measured minimum clear envelope | 850 mm | 650 mm | 450 mm |
-| Baseline lower box external size | 1050 mm | 760 mm | 470 mm |
-| Baseline lower box approximate clear size | ~1026 mm | ~736 mm | ~470 mm |
+| **Current lower box external size** | **1000 mm** | **900 mm** | **560 mm** |
+| Approximate clear size with 12 mm plywood | ~976 mm | ~876 mm | ~560 mm |
 
 Older reference data retained for context:
 
@@ -36,32 +36,50 @@ Older reference data retained for context:
 | LUBA 2 AWD robot | 690 mm | 513 mm | 273 mm |
 | Charging base / station MTL23CHS0001 | 610 mm | 570 mm | 350 mm |
 
-## Baseline dimensions
+## Current approved dimensions
 
-Recommended external footprint for the lower functional box:
+### Lower functional box
 
-- **Length:** 1050 mm
-- **Width:** 760 mm
-- **Robot bay working height:** 470 mm
+- **Length:** 1000 mm
+- **Width:** 900 mm
+- **Robot bay / wall height:** 560 mm
 
-Recommended visual upper module:
+The visible front face ratio is:
 
-- **Gable rise above lower box:** 280–320 mm
-- **Roof footprint:** approx. 1090 × 820 mm with small overhangs
-- **Optional square tower:** 220–280 mm wide
+- **900 / 560 = 1.607**
+- Golden ratio: **1.618**
 
-Recommended robot bay:
+This is approximately 0.7% below the golden ratio and gives the lower module a balanced church-like facade while preserving practical internal clearance.
 
-- **Internal length:** approx. 1026 mm
-- **Internal width:** approx. 736 mm
-- **Robot bay working height:** approx. 470 mm
+### Gable roof
+
+- **Gable rise above the lower box:** 280–300 mm
+- **Height from ground to roof ridge:** 840–860 mm
+- **Approximate roof footprint:** 1040 × 940 mm with about 20 mm overhang on each side
+
+The roof rise is measured above the 560 mm rectangular box height. It is not included in the lower-box height.
+
+### Wide tower
+
+The current concept uses a wide tower centered over both roof slopes rather than a narrow ridge tower.
+
+- **Width:** 480–520 mm
+- **Depth:** 450–500 mm
+- **Visible height above the roof:** approximately 450–500 mm
+- **Approximate total structure height:** 1290–1360 mm
+
+The tower must be supported by the roof-module structure and internal framing, not by roof cladding alone.
+
+### Recommended robot bay
+
+- **Internal length:** approximately 976 mm
+- **Internal width:** approximately 876 mm
+- **Working height:** approximately 560 mm
 - **Gate opening:** functional low mower entry, not cathedral-height
-
-The front lower box ratio is approximately 760 / 470 = 1.617, close to the golden ratio. This creates a stable visual base for the hinged gable roof and optional tower.
 
 ## Cut sheets
 
-- [Baseline lower box cut sheet — 1250 × 2500 mm](cut-sheets/baseline-lower-box-1250x2500.md)
+- [Current lower box cut sheet — 1250 × 2500 mm](cut-sheets/baseline-lower-box-1250x2500.md)
 
 ## Internal layout
 
@@ -100,4 +118,4 @@ images/          Renders, construction photos, examples
 
 ## Current status
 
-Concept and first documentation draft. The measured minimum clear envelope is now 850 × 650 × 450 mm. Baseline lower box cut sheet added for a 1250 × 2500 mm plywood sheet. Final cut files still require verification against the real Luba 3 AWD charging station and installation site before production.
+The current dimensional baseline is fixed at **1000 × 900 × 560 mm** for the lower box, with a **280–300 mm** gable rise and a wide tower approximately **480–520 mm wide**, **450–500 mm deep**, and **450–500 mm high above the roof**. Final production drawings still require verification against the real Luba 3 AWD charging station, construction material thickness, hinge design, and installation site before cutting.
