@@ -77,6 +77,33 @@ The tower must be supported by the roof-module structure and internal framing, n
 - **Working height:** approximately 560 mm
 - **Gate opening:** functional low mower entry, not cathedral-height
 
+## Purchase list
+
+Items required for the current assembly stage:
+
+- Staples compatible with the available staple gun.
+- Nails compatible with the available nailer.
+- Exterior wood glue, preferably **D4**; **D3** is acceptable only for protected joints.
+- Approximately **4–5 timber mounting battens**, each about **30 × 45 mm** in section.
+
+Final staple and nail lengths must be selected after confirming the plywood thickness, batten orientation and available tool specifications.
+
+## Assembly issue discovered
+
+During assembly, an important dimensional error was identified:
+
+- All measurements and panel dimensions had been treated as external dimensions.
+- The thickness of the plywood sheets was not consistently subtracted from the mating panels.
+- With **12 mm plywood** and ordinary square butt joints, the accumulated width difference is **24 mm**, equal to the thickness of two plywood sheets.
+- This difference would not appear only if the joint were mitred at 45°, but the current construction method uses square joints on timber battens.
+
+Therefore, all remaining production dimensions must explicitly state:
+
+1. which panels overlap other panels;
+2. which dimensions are external and which are clear internal dimensions;
+3. where one or two plywood thicknesses must be subtracted;
+4. the actual measured plywood thickness, not only its nominal value.
+
 ## Cut sheets
 
 - [Current lower box cut sheet — 1250 × 2500 mm](cut-sheets/baseline-lower-box-1250x2500.md)
@@ -118,4 +145,4 @@ images/          Renders, construction photos, examples
 
 ## Current status
 
-The current dimensional baseline is fixed at **1000 × 900 × 560 mm** for the lower box, with a **280–300 mm** gable rise and a wide tower approximately **480–520 mm wide**, **450–500 mm deep**, and **450–500 mm high above the roof**. Final production drawings still require verification against the real Luba 3 AWD charging station, construction material thickness, hinge design, and installation site before cutting.
+The current dimensional baseline is fixed at **1000 × 900 × 560 mm** for the lower box, with a **280–300 mm** gable rise and a wide tower approximately **480–520 mm wide**, **450–500 mm deep**, and **450–500 mm high above the roof**. Final production drawings still require verification against the real Luba 3 AWD charging station, actual construction material thickness, joint overlap rules, hinge design, and installation site before any additional cutting.
