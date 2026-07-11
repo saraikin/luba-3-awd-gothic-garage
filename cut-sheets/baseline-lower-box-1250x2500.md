@@ -1,12 +1,18 @@
-# Baseline lower box cut sheet — 1250 × 2500 mm sheet
+# Current lower box cut sheet — 1250 × 2500 mm sheet
 
 ## Decision
 
 Use one standard plywood sheet **1250 × 2500 mm** for the **lower functional box only**.
 
-The hinged gable roof and optional square tower should be treated as the **upper architectural module** and cut separately. Trying to include the lower box, service shelf, two roof slopes, and tower in one sheet either makes the garage too tight around the Luba 3 AWD charging station or removes important structural/service parts.
+The current lower-box baseline is fixed at:
 
-## New measured minimum envelope
+- **Length:** 1000 mm
+- **Width:** 900 mm
+- **Wall / robot-bay height:** 560 mm
+
+The hinged gable roof and wide tower are separate upper architectural modules and must be cut and framed separately.
+
+## Measured minimum envelope
 
 Measured charging-station / robot minimum envelope:
 
@@ -16,179 +22,121 @@ Measured charging-station / robot minimum envelope:
 | Width | 650 mm |
 | Height | 450 mm |
 
-## Recommended lower box size
+## Current lower box size
 
-Assumption: **12 mm exterior plywood** and no plywood floor. The robot stands on concrete slabs / prepared ground, consistent with the project brief.
+Assumptions:
 
-| Dimension | Recommended external size | Approx. clear internal size |
+- **12 mm exterior plywood**
+- no plywood floor
+- robot stands on concrete slabs or prepared ground
+- rear wall fits between the two side walls
+
+| Dimension | Current external size | Approx. clear internal size |
 |---|---:|---:|
-| Length | 1050 mm | ~1026 mm |
-| Width | 800 mm | ~776 mm |
-| Wall / bay height | 500 mm | ~500 mm |
+| Length | 1000 mm | ~976 mm |
+| Width | 900 mm | ~876 mm |
+| Wall / bay height | 560 mm | ~560 mm |
 
-This gives clearance over the measured minimum:
+Clearance over the measured minimum:
 
-| Dimension | Minimum | Clear internal | Clearance |
+| Dimension | Minimum | Approx. clear internal | Clearance |
 |---|---:|---:|---:|
-| Length | 850 mm | ~1026 mm | +176 mm |
-| Width | 650 mm | ~776 mm | +126 mm |
-| Height | 450 mm | ~500 mm | +50 mm |
+| Length | 850 mm | ~976 mm | +126 mm |
+| Width | 650 mm | ~876 mm | +226 mm |
+| Height | 450 mm | ~560 mm | +110 mm |
 
 ## Aesthetic rationale
 
-The front lower box uses a near-golden proportion:
+The visible front lower-box proportion is close to the golden ratio:
 
-- External width: **800 mm**
-- Wall height: **500 mm**
-- Ratio: **800 / 500 = 1.60**
+- External width: **900 mm**
+- Wall height: **560 mm**
+- Ratio: **900 / 560 = 1.607**
+- Golden ratio: **1.618**
 
-This is close to the golden ratio **1.618** and gives the lower module a visually stable chapel base. The gable roof can then add vertical emphasis without making the functional entry too tall.
+The deviation is approximately 0.7%, giving the lower module a balanced church-like facade while preserving useful working height.
 
-Recommended visual proportions for the later upper module:
+## Current upper-module proportions
 
-- Lower wall height: **500 mm**
-- Gable rise above wall: **280–320 mm**
-- Total body height without tower: **780–820 mm**
-- Optional square tower: **220–280 mm** wide, placed on the ridge or front third
+- Lower wall height: **560 mm**
+- Gable rise above wall: **280–300 mm**
+- Height to roof ridge: **840–860 mm**
+- Roof footprint: approximately **1040 × 940 mm** with about 20 mm overhang on each side
+- Wide tower width: **480–520 mm**
+- Wide tower depth: **450–500 mm**
+- Visible tower height above roof: approximately **450–500 mm**
+- Approximate total structure height: **1290–1360 mm**
+
+The wide tower is centered over both roof slopes and must transfer its load into internal roof framing or a structural tower base, not into roof cladding alone.
 
 ## Panel list — lower functional box
 
 All dimensions are in millimetres.
 
-| Part | Qty | Size | Notes |
+| Part | Qty | Nominal size | Notes |
 |---|---:|---:|---|
-| Side wall | 2 | 1050 × 500 | Full-length left/right walls. |
-| Rear wall | 1 | 776 × 500 | Fits between side walls if using 12 mm plywood. Adjust if using different thickness. |
-| Top ceiling / service shelf | 1 | 1050 × 800 | Sits on top of the lower box; roof module hinges above/behind it. |
-| Front upper lintel | 1 | 800 × 120 | Keeps the front rigid while leaving a low practical gate. |
-| Front side jamb | 2 | 500 × 90 | Optional; can also be made from battens if a fully open front is preferred. |
-| Internal corner / hinge reinforcement strips | as needed | from offcuts | Use remaining strips for hinge backing, cable route, ventilation baffles, and roof stops. |
+| Side wall | 2 | 1000 × 560 | Full-length left and right walls. |
+| Rear wall | 1 | 876 × 560 | Fits between 12 mm side walls. Confirm actual plywood thickness before cutting. |
+| Top ceiling / service shelf | 1 | 1000 × 900 | Supports the removable/hinged upper roof module through structural framing. |
+| Front upper lintel | 1 | 900 × 100 | Provisional; final height depends on gate design. |
+| Front side jamb | 2 | 560 × 70 | Optional/provisional; may be replaced by external timber battens. |
+| Hinge, corner and roof-stop reinforcement | as needed | from offcuts | Size after hinge and tower-support details are fixed. |
 
-Recommended front opening after lintel/jambs:
+With two 70 mm jambs, the nominal front opening is approximately:
 
-- Width: approximately **620 mm** if both 90 mm jambs are used.
-- Height: approximately **380 mm** below the 120 mm lintel.
+- Width: **760 mm**
+- Height below a 100 mm lintel: **460 mm**
 
-If this feels too tight for Luba entry, omit the plywood jambs and use timber battens outside the opening instead. The entry should remain a functional mower gate, not a cathedral-height portal.
+This provides more clearance than the measured minimum envelope, but the opening must still be tested against the actual charging trajectory before production.
 
-## Suggested one-sheet layout
+## One-sheet layout
 
 Sheet orientation: **2500 mm length × 1250 mm width**.
 
-```text
-SHEET 1250 × 2500 mm
-
-Length 0–1050 mm:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Top ceiling / service shelf 1050 × 800 │ offcut 1050 × 450         │
-└────────────────────────────────────────────────────────────────────┘
-
-Length 1050–2100 mm:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Side wall 1050 × 500 │ Side wall 1050 × 500 │ offcut 1050 × 250     │
-└────────────────────────────────────────────────────────────────────┘
-
-Length 2100–2500 mm:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Rear wall 776 × 500 rotated into 500 × 776 zone* │ front/brace parts │
-└────────────────────────────────────────────────────────────────────┘
-```
-
-\* The rear wall is 776 × 500. In the last 400 mm length strip it cannot fit if kept as 500 mm deep. Cut this panel from the 1050 × 450 offcut only if the wall height is reduced to 450 mm, or use the alternative layout below.
-
-## Corrected production layout
-
-Because the rear wall is 500 mm high, use this production layout instead:
+The following arrangement fits the principal lower-box panels on one sheet before allowing for saw kerf and trimming:
 
 ```text
-SHEET 1250 × 2500 mm
+SHEET 2500 × 1250 mm
 
-Zone A — 0–1050 mm length:
-- Side wall: 1050 × 500
-- Side wall: 1050 × 500
-- Remaining strip: 1050 × 250
+Zone A — length 0–900 mm:
+- Top ceiling / service shelf rotated: 900 × 1000 mm
+- Remaining strip: 900 × 250 mm
 
-Zone B — 1050–2100 mm length:
-- Top ceiling / service shelf: 1050 × 800
-- Remaining strip: 1050 × 450
+Zone B — length 900–1900 mm:
+- Side wall: 1000 × 560 mm
+- Side wall: 1000 × 560 mm
+- Remaining strip: 1000 × 130 mm
 
-Zone C — 2100–2500 mm length:
-- Cut front lintel, jambs, hinge reinforcements and decorative/tower test pieces from the remaining 400 × 1250 strip.
+Zone C — length 1900–2460 mm:
+- Rear wall rotated: 560 × 876 mm
+- Remaining area below it: approximately 560 × 374 mm
 
-Rear wall:
-- Cut from Zone B remaining 1050 × 450 only if choosing 450 mm wall height; otherwise cut rear wall from a second/offcut sheet.
+Zone D — length 2460–2500 mm:
+- Narrow residual strip: 40 × 1250 mm
 ```
 
-## Preferred production adjustment
+Use the remaining **900 × 250 mm** and **560 × 374 mm** areas for the front lintel, optional jambs, hinge backing, stops and test pieces.
 
-To keep the entire lower box on one sheet, use **470 mm wall height** instead of 500 mm:
+## Production cautions
 
-| Dimension | External | Approx. clear internal |
-|---|---:|---:|
-| Length | 1050 mm | ~1026 mm |
-| Width | 760 mm | ~736 mm |
-| Wall / bay height | 470 mm | ~470 mm |
-
-Aesthetic ratio:
-
-- **760 / 470 = 1.617** — almost exactly the golden ratio.
-
-Clearance over minimum:
-
-| Dimension | Minimum | Clear internal | Clearance |
-|---|---:|---:|---:|
-| Length | 850 mm | ~1026 mm | +176 mm |
-| Width | 650 mm | ~736 mm | +86 mm |
-| Height | 450 mm | ~470 mm | +20 mm |
-
-Preferred one-sheet cut list:
-
-| Part | Qty | Size |
-|---|---:|---:|
-| Side wall | 2 | 1050 × 470 |
-| Rear wall | 1 | 736 × 470 |
-| Top ceiling / service shelf | 1 | 1050 × 760 |
-| Front upper lintel | 1 | 760 × 100 |
-| Front side jamb | 2 | 470 × 70 |
-| Hinge / corner / roof-stop reinforcements | several | from offcuts |
-
-Preferred sheet layout:
-
-```text
-SHEET 1250 × 2500 mm
-
-Zone A — 0–1050 mm length:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Side 1050×470 │ Side 1050×470 │ offcut 1050×310                   │
-└────────────────────────────────────────────────────────────────────┘
-
-Zone B — 1050–2100 mm length:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Top shelf 1050×760 │ offcut 1050×490                              │
-└────────────────────────────────────────────────────────────────────┘
-
-Zone C — 2100–2500 mm length:
-┌─────────────────────────────── 1250 ───────────────────────────────┐
-│ Rear wall 736×470 rotated as 470×736 zone │ front/brace pieces      │
-└────────────────────────────────────────────────────────────────────┘
-```
-
-Material use for the preferred lower box is high and leaves useful long strips for battens, hinge backing, cable baffles, front lintel, test facade pieces, and tower mock-up parts.
+- Allow for actual saw kerf and edge trimming; do not mark every panel directly from nominal sheet edges without checking the cutting sequence.
+- Measure actual plywood thickness. The nominal rear-wall width of **876 mm** assumes exactly 12 mm side panels.
+- Confirm whether the top shelf sits over the side walls or between them; this changes its final cutting size and load path.
+- Confirm hinge geometry before drilling or cutting reinforcement parts.
+- Verify tower support framing before using the top shelf as a structural member.
+- Test the front opening and docking path using a temporary timber or cardboard mock-up before cutting the decorative facade.
 
 ## Roof interface
 
-The gable roof should not be part of the lower box cut sheet.
-
-Recommended roof interface:
-
-- Roof module footprint: approx. **1090 × 820 mm** with 20 mm side overhang and 20 mm front/rear overhang.
+- Roof module footprint: approximately **1040 × 940 mm**.
+- Gable rise: **280–300 mm** above the 560 mm lower box.
 - Hinge line: rear top edge of the lower box or a raised rear hinge batten.
-- Gable rise: **280–320 mm**.
-- Roof module should land on roof stops fixed to the top shelf, not on the robot bay walls.
-- Optional tower should sit on the roof module, not structurally on the lower box.
+- Roof module should land on structural roof stops fixed to framing.
+- Wide tower footprint: approximately **480–520 × 450–500 mm**.
+- Tower support must bridge or reinforce both roof slopes.
 
 ## Final recommendation
 
-Use the **1050 × 760 × 470 mm lower box** as the baseline.
+Use the **1000 × 900 × 560 mm lower box** as the current project baseline.
 
-It fits the measured minimum envelope, uses the 1250 × 2500 mm sheet efficiently, preserves the functional-first architecture, and gives the visible front face a near-perfect golden-ratio proportion before the hinged gable roof and optional tower are added.
+It provides practical clearance over the measured Luba 3 AWD envelope, keeps the front facade close to the golden ratio, fits the principal lower-box panels on one 1250 × 2500 mm plywood sheet, and supports the current concept of a 280–300 mm gable rise with a wide tower centered over both roof slopes.
