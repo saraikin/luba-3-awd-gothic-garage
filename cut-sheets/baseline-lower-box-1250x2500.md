@@ -45,6 +45,25 @@ Clearance over the measured minimum:
 | Width | 650 mm | ~876 mm | +226 mm |
 | Height | 450 mm | ~560 mm | +110 mm |
 
+## Assembly issue discovered
+
+The first assembly attempt exposed a dimensional error in the planning method:
+
+- Panel dimensions had been treated as external dimensions without consistently accounting for plywood thickness at square butt joints.
+- With **12 mm plywood**, two overlapping side sheets add **24 mm**.
+- As a result, a panel cut to the full nominal external width is 24 mm too wide or causes the assembled box to become 24 mm wider, depending on which panel overlaps.
+- A 45° mitred joint would preserve the external dimension, but the current construction method uses straight joints fixed to timber battens.
+
+### Required correction rule
+
+For every square joint, define the overlap before cutting:
+
+- Panel fitting **between two 12 mm side panels**: subtract **24 mm** from the external dimension.
+- Panel fitting behind or inside **one 12 mm panel**: subtract **12 mm**.
+- Panel covering the outside edges of adjacent panels: keep the full external dimension.
+
+The actual plywood thickness must be measured with calipers before final production cutting. Nominal 12 mm plywood may differ slightly from its real thickness.
+
 ## Aesthetic rationale
 
 The visible front lower-box proportion is close to the golden ratio:
@@ -78,7 +97,7 @@ All dimensions are in millimetres.
 | Side wall | 2 | 1000 × 560 | Full-length left and right walls. |
 | Rear wall | 1 | 876 × 560 | Fits between 12 mm side walls. Confirm actual plywood thickness before cutting. |
 | Top ceiling / service shelf | 1 | 1000 × 900 | Supports the removable/hinged upper roof module through structural framing. |
-| Front upper lintel | 1 | 900 × 100 | Provisional; final height depends on gate design. |
+| Front upper lintel | 1 | 900 × 100 | Provisional; final height depends on gate design and overlap rule. |
 | Front side jamb | 2 | 560 × 70 | Optional/provisional; may be replaced by external timber battens. |
 | Hinge, corner and roof-stop reinforcement | as needed | from offcuts | Size after hinge and tower-support details are fixed. |
 
@@ -88,6 +107,15 @@ With two 70 mm jambs, the nominal front opening is approximately:
 - Height below a 100 mm lintel: **460 mm**
 
 This provides more clearance than the measured minimum envelope, but the opening must still be tested against the actual charging trajectory before production.
+
+## Current purchase list
+
+- Staples compatible with the available staple gun.
+- Nails compatible with the available nailer.
+- Exterior wood glue: preferably **D4**, or **D3** for protected joints.
+- Approximately **4–5 timber mounting battens**, each about **30 × 45 mm** in section.
+
+Confirm staple and nail dimensions after checking the tool models, plywood thickness and batten orientation.
 
 ## One-sheet layout
 
@@ -121,6 +149,8 @@ Use the remaining **900 × 250 mm** and **560 × 374 mm** areas for the front li
 
 - Allow for actual saw kerf and edge trimming; do not mark every panel directly from nominal sheet edges without checking the cutting sequence.
 - Measure actual plywood thickness. The nominal rear-wall width of **876 mm** assumes exactly 12 mm side panels.
+- Define the overlap direction for every joint before marking the sheet.
+- Do not reuse an external dimension directly for a panel that must fit between two other sheets.
 - Confirm whether the top shelf sits over the side walls or between them; this changes its final cutting size and load path.
 - Confirm hinge geometry before drilling or cutting reinforcement parts.
 - Verify tower support framing before using the top shelf as a structural member.
@@ -139,4 +169,4 @@ Use the remaining **900 × 250 mm** and **560 × 374 mm** areas for the front li
 
 Use the **1000 × 900 × 560 mm lower box** as the current project baseline.
 
-It provides practical clearance over the measured Luba 3 AWD envelope, keeps the front facade close to the golden ratio, fits the principal lower-box panels on one 1250 × 2500 mm plywood sheet, and supports the current concept of a 280–300 mm gable rise with a wide tower centered over both roof slopes.
+It provides practical clearance over the measured Luba 3 AWD envelope and keeps the front facade close to the golden ratio. Before any further cutting, revise every panel dimension using the defined joint-overlap rule and the actual measured plywood thickness.
