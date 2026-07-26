@@ -4,19 +4,67 @@ import argparse, random, textwrap, math
 from pathlib import Path
 import cairosvg
 from PIL import Image, ImageDraw, ImageFilter
-from common import (load_config,mm_to_px,mm_to_pt,pointed_path,pointed_mask,
+from common import (load_config,load_asset,mm_to_px,mm_to_pt,pointed_path,pointed_mask,
                     entrance_geometry,entrance_mask,image_pdf,data_uri)
-from textures import generate_wall, generate_wood_piece
+from textures import generate_wood_piece
 from stained_glass import build_svg
 
 
+def _segment_bounds_px(segments_mm,dpi):
+    bounds=[0]; total=0.0
+    for segment in segments_mm:
+        total+=segment; bounds.append(mm_to_px(total,dpi))
+    return bounds
+
+
+def _align_rear_seam(wall,cfg):
+    """Move only the two rear-wall halves so their join falls on the source buttress centre."""
+    dpi=cfg['dpi']; w=cfg['wall']; seg=w['segments_mm']; bounds=_segment_bounds_px(seg,dpi)
+    first=wall.crop((bounds[0],0,bounds[1],wall.height))
+    last=wall.crop((bounds[4],0,bounds[5],wall.height))
+    rear=Image.new('RGB',(last.width+first.width,wall.height))
+    rear.paste(last,(0,0)); rear.paste(first,(last.width,0))
+    shift=min(max(0,mm_to_px(w.get('rear_seam_source_offset_mm',0),dpi)),max(0,rear.width-1))
+    if shift:
+        rotated=Image.new('RGB',rear.size)
+        rotated.paste(rear.crop((shift,0,rear.width,rear.height)),(0,0))
+        rotated.paste(rear.crop((0,0,shift,rear.height)),(rear.width-shift,0))
+        rear=rotated
+    wall.paste(rear.crop((last.width,0,rear.width,rear.height)),(bounds[0],0))
+    wall.paste(rear.crop((0,0,last.width,rear.height)),(bounds[4],0))
+    overlap=bounds[6]-bounds[5]
+    if overlap>0:
+        wall.paste(wall.crop((0,0,overlap,wall.height)),(bounds[5],0))
+    return wall
+
+
+def _save_window_alignment_preview(wall,cfg,out):
+    dpi=cfg['dpi']; win=cfg['windows']; crops=[]
+    pad_x=70; pad_top=45; pad_bottom=45
+    for cx in win['centers_x_mm']:
+        left=mm_to_px(cx-win['width_mm']/2-pad_x,dpi)
+        right=mm_to_px(cx+win['width_mm']/2+pad_x,dpi)
+        top=mm_to_px(win['top_mm']-pad_top,dpi)
+        bottom=mm_to_px(win['top_mm']+win['height_mm']+pad_bottom,dpi)
+        crops.append(wall.crop((left,top,right,bottom)))
+    gap=30; preview=Image.new('RGB',(sum(c.width for c in crops)+gap*(len(crops)-1),max(c.height for c in crops)),'white')
+    x=0
+    for crop in crops:
+        preview.paste(crop,(x,0)); x+=crop.width+gap
+    preview.save(out/'WALL_WINDOW_ALIGNMENT_PREVIEW.jpg',quality=96,subsampling=0,dpi=(dpi,dpi))
+
+
 def build_wall(cfg,root,out):
-    dpi=cfg['dpi']; w=cfg['wall']; win=cfg['windows']; wall=generate_wall(cfg)
+    dpi=cfg['dpi']; w=cfg['wall']; win=cfg['windows']
+    wall=load_asset(root/cfg['assets']['wall_base'])
     wall=wall.resize((mm_to_px(w['width_mm'],dpi),mm_to_px(w['height_mm'],dpi)),Image.Resampling.LANCZOS)
+    wall=_align_rear_seam(wall,cfg)
     wall=wall.filter(ImageFilter.UnsharpMask(radius=1.1,percent=115,threshold=2))
     for cx in win['centers_x_mm']:
-        wall.paste((255,255,255),(0,0),pointed_mask(wall.size,cx,win['top_mm'],win['width_mm'],win['height_mm'],win['arch_height_mm'],dpi))
+        opening=pointed_mask(wall.size,cx,win['top_mm'],win['width_mm'],win['height_mm'],win['arch_height_mm'],dpi)
+        wall.paste((255,255,255),(0,0),opening)
     wall.paste((255,255,255),(0,0),entrance_mask(wall.size,cfg,dpi))
+    _save_window_alignment_preview(wall,cfg,out)
     art=out/'wall_stone_with_window_openings.jpg'; wall.save(art,quality=95,subsampling=0,dpi=(dpi,dpi))
     pdf=out/'01_WALLS_STONE_WINDOW_OPENINGS_3875x610mm_100pct.pdf'; image_pdf(art,pdf,w['width_mm'],w['height_mm'],'Luba garage wall film')
     ep,_=entrance_geometry(cfg); windows='\n'.join(f'<path d="{pointed_path(cx,win["top_mm"],win["width_mm"],win["height_mm"],win["arch_height_mm"])}"/>' for cx in win['centers_x_mm'])
