@@ -16,7 +16,9 @@ def load_asset(path: Path) -> Image.Image:
     chunks = sorted(path.parent.glob(path.name + '.b64.*'))
     if not chunks:
         raise FileNotFoundError(path)
-    raw = base64.b64decode(''.join(p.read_text(encoding='ascii').strip() for p in chunks))
+    encoded=''.join(p.read_text(encoding='ascii').strip() for p in chunks)
+    encoded += '=' * (-len(encoded) % 4)
+    raw = base64.b64decode(encoded)
     return Image.open(io.BytesIO(raw)).convert('RGB')
 
 
