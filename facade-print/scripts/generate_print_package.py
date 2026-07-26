@@ -4,13 +4,14 @@ import argparse, random, textwrap
 from pathlib import Path
 import cairosvg
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
-from common import (load_config,load_asset,mm_to_px,mm_to_pt,pointed_path,pointed_mask,
+from common import (load_config,mm_to_px,mm_to_pt,pointed_path,pointed_mask,
                     entrance_geometry,entrance_mask,image_pdf,data_uri)
+from textures import generate_wall, generate_wood
 from stained_glass import build_svg
 
 
 def build_wall(cfg,root,out):
-    dpi=cfg['dpi']; w=cfg['wall']; win=cfg['windows']; wall=load_asset(root/cfg['assets']['wall_base'])
+    dpi=cfg['dpi']; w=cfg['wall']; win=cfg['windows']; wall=generate_wall(cfg)
     wall=wall.resize((mm_to_px(w['width_mm'],dpi),mm_to_px(w['height_mm'],dpi)),Image.Resampling.LANCZOS)
     wall=wall.filter(ImageFilter.UnsharpMask(radius=1.1,percent=115,threshold=2))
     for cx in win['centers_x_mm']:
@@ -31,7 +32,7 @@ def build_wall(cfg,root,out):
 
 
 def build_floor(cfg,root,out):
-    dpi=cfg['dpi']; f=cfg['floor']; rng=random.Random(cfg['random_seed']); wood=load_asset(root/cfg['assets']['wood_base'])
+    dpi=cfg['dpi']; f=cfg['floor']; rng=random.Random(cfg['random_seed']); wood=generate_wood(cfg)
     size=(mm_to_px(f['file_width_mm'],dpi),mm_to_px(f['file_height_mm'],dpi)); floor=Image.new('RGB',size,(58,37,25)); d=ImageDraw.Draw(floor,'RGBA')
     widths=[]; left=f['trim_width_mm']
     while left>.001:
