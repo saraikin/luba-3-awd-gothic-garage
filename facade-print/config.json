@@ -6,7 +6,8 @@
     "height_mm": 610.0,
     "top_fold_mm": 40.0,
     "segments_mm": [498.5, 925.0, 998.0, 925.0, 498.5, 30.0],
-    "segment_names": ["rear_half_left", "left", "front", "right", "rear_half_right", "rear_overlap"]
+    "segment_names": ["rear_half_left", "left", "front", "right", "rear_half_right", "rear_overlap"],
+    "rear_seam_source_offset_mm": 42.0
   },
   "entrance": {
     "bottom_width_mm": 604.0,
@@ -38,5 +39,8 @@
     "plank_length_min_mm": 180.0,
     "plank_length_max_mm": 360.0,
     "joint_clearance_mm": 45.0
+  },
+  "assets": {
+    "wall_base": "assets/wall_base_realistic.jpg"
   }
 }
