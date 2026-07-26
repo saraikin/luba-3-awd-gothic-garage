@@ -1,8 +1,6 @@
 # Generated files
 
-Run `make generate` from `facade-print/` to rebuild the complete print package.
-The repository tracks only the compact preview and vector source files; large print PDFs and
-embedded-raster hybrid SVG files are reproducible and are generated locally or by GitHub Actions.
+Run `make generate` from `facade-print/` to rebuild the complete print package. Large PDFs, previews, texture rasters and hybrid SVG files are intentionally not committed because they are deterministic outputs of the tracked source code.
 
 Generated print-shop files include:
 
@@ -10,9 +8,8 @@ Generated print-shop files include:
 - `01B_WALL_CUT_CONTOURS_3875x610mm.pdf` and `.svg`
 - `02_STAINED_GLASS_COMPLEX_TRANSLUCENT_280x330mm.pdf`
 - `03_ATTIC_FLOOR_FINE_PLANKS_1004x931mm_100pct.pdf`
+- `wall_wrap_hybrid_with_cut_layers.svg`
+- `attic_floor_fine_planks_hybrid_source.svg`
+- `PREVIEW.jpg`
 
-Tracked reference files:
-
-- `01B_WALL_CUT_CONTOURS_3875x610mm.svg`
-- `stained_glass_complex_vector_source.svg`
-- `README_FOR_PRINT_SHOP_RU_SI.txt`
+The GitHub Actions workflow uploads these files as a downloadable build artifact.
