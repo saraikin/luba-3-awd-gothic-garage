@@ -11,5 +11,6 @@ Generated print-shop files include:
 - `wall_wrap_hybrid_with_cut_layers.svg`
 - `attic_floor_fine_planks_hybrid_source.svg`
 - `PREVIEW.jpg`
+- `FLOOR_DETAIL_250x250mm_PREVIEW.jpg` — a non-downscaled detail for checking grain scale, unique plank pieces and staggered joints
 
 The GitHub Actions workflow uploads these files as a downloadable build artifact.
