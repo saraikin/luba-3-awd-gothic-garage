@@ -29,8 +29,14 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
       - name: Generate all print files
-        run: python scripts/generate_print_package.py --config config.json --output generated
-      - name: Upload print package
+        id: generate
+        continue-on-error: true
+        run: |
+          mkdir -p generated
+          set -o pipefail
+          python scripts/generate_print_package.py --config config.json --output generated 2>&1 | tee generated/build.log
+      - name: Upload print package and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: luba-garage-facade-print
@@ -40,5 +46,9 @@ jobs:
             facade-print/generated/*.jpg
             facade-print/generated/*.png
             facade-print/generated/*.txt
+            facade-print/generated/build.log
           if-no-files-found: error
           retention-days: 90
+      - name: Fail when generation failed
+        if: steps.generate.outcome == 'failure'
+        run: exit 1
