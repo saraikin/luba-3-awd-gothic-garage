@@ -1,0 +1,58 @@
+{
+  "dpi": 75,
+  "random_seed": 20260726,
+  "wall": {
+    "width_mm": 3875.0,
+    "height_mm": 610.0,
+    "top_fold_mm": 40.0,
+    "segments_mm": [
+      498.5,
+      925.0,
+      998.0,
+      925.0,
+      498.5,
+      30.0
+    ],
+    "segment_names": [
+      "rear_half_left",
+      "left",
+      "front",
+      "right",
+      "rear_half_right",
+      "rear_overlap"
+    ]
+  },
+  "entrance": {
+    "bottom_width_mm": 604.0,
+    "top_width_mm": 600.0,
+    "height_mm": 365.0,
+    "corner_radius_mm": 87.5
+  },
+  "windows": {
+    "centers_x_mm": [
+      1022.0,
+      2732.0
+    ],
+    "top_mm": 112.0,
+    "width_mm": 98.0,
+    "height_mm": 300.0,
+    "arch_height_mm": 98.0,
+    "mounting_bleed_mm": 8.0,
+    "sheet_width_mm": 280.0,
+    "sheet_height_mm": 330.0
+  },
+  "floor": {
+    "file_width_mm": 1004.0,
+    "file_height_mm": 931.0,
+    "trim_width_mm": 998.0,
+    "trim_height_mm": 925.0,
+    "trim_offset_x_mm": 3.0,
+    "trim_offset_y_mm": 3.0,
+    "plank_width_min_mm": 14.0,
+    "plank_width_max_mm": 22.0
+  },
+  "assets": {
+    "wall_base": "assets/wall_base_realistic.jpg",
+    "wood_base": "assets/wood_base_realistic.jpg"
+  }
+}
