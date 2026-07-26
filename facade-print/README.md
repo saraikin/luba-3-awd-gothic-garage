@@ -1,8 +1,6 @@
 # Facade print package
 
-This directory contains the complete, reproducible source for the lower-box vinyl graphics.
-It includes the measured geometry, source textures, generator script, technical cut layers,
-vector stained glass and a preview of the current result. Print-ready PDFs are generated reproducibly.
+This directory contains the complete reproducible source for the lower-box vinyl graphics: measured geometry, deterministic stone and wood texture generators, exact cut paths, editable vector stained glass, print export code and GitHub Actions automation.
 
 ## Current design
 
@@ -12,52 +10,44 @@ vector stained glass and a preview of the current result. Print-ready PDFs are g
 - Wall sequence: **498.5 + 925 + 998 + 925 + 498.5 + 30 mm**.
 - The final **30 mm** is the rear-wall overlap.
 - The upper **40 mm** folds over the top surface.
-- The entrance cut follows the measured **604 mm** lower width, **600 mm** upper width,
-  **365 mm** height and **87.5 mm** corner radius.
+- Entrance: **604 mm** lower width, **600 mm** upper width, **365 mm** height and **87.5 mm** corner radius.
 
 ### Lit stained-glass windows
 
-The main white exterior PVC film is opaque, so the stained-glass graphics are not printed
-as part of the wall film. Two openings are cut through the film and plywood. The colored
-inserts are printed separately on translucent/backlit film and attached from inside.
+The white exterior wall film is opaque. The two openings are cut through the film and plywood; the colored inserts are printed separately on translucent/backlit film and attached from inside.
 
-- Left window: Tree of Life.
-- Right window: rose, stars and fleur-de-lis.
+- Left: Tree of Life.
+- Right: rose, stars and fleur-de-lis.
 - Visible opening: **98 × 300 mm**.
 - Pointed-arch height: **98 mm**.
-- Mounting bleed: **8 mm** around each insert.
+- Mounting bleed: **8 mm**.
 
 ### Attic floor
 
 - Print file: **1004 × 931 mm**.
 - Trim size: **998 × 925 mm**.
-- Model plank width: **14–22 mm**.
-- At approximately 1:16 architectural scale, this represents boards about **220–350 mm** wide.
+- Model plank width: **14–22 mm**, approximately **220–350 mm** at 1:16 scale.
 
-## Directory structure
+## Structure
 
 ```text
 facade-print/
-├── config.json                         Exact editable dimensions and generation settings
+├── config.json                         Editable dimensions and generation settings
 ├── requirements.txt                    Python dependencies
-├── Makefile                            Convenience commands
-├── assets/
-│   ├── wall_base_realistic.jpg         Master realistic stone wall artwork before window cuts
-│   ├── wood_base_realistic.jpg         Master aged-wood texture used to construct narrow planks
-│   └── README.md                        Asset provenance and usage notes
+├── Makefile                            Convenience command
 ├── scripts/
-│   └── generate_print_package.py       Complete deterministic generator
-└── generated/
-    ├── 01B_WALL_CUT_CONTOURS_...svg   Exact entrance/window cutting paths
-    ├── stained_glass_...svg            Editable vector stained glass
-    └── README_FOR_PRINT_SHOP_...       Material and installation instructions
+│   ├── textures.py                     Stone and aged-wood texture generators
+│   ├── stained_glass.py                Editable vector stained-glass generator
+│   ├── common.py                       Geometry and export helpers
+│   └── generate_print_package.py       Complete package generator
+└── generated/                          Small tracked reference files; large outputs are rebuilt
 
-.github/workflows/facade-print.yml      Builds downloadable print PDFs as an Actions artifact
+.github/workflows/facade-print.yml      Builds downloadable PDFs/SVGs as an Actions artifact
 ```
 
-## Reproducing the result
+## Reproduce
 
-Python 3.11 or newer is recommended.
+Python 3.11 or newer:
 
 ```bash
 cd facade-print
@@ -67,44 +57,36 @@ pip install -r requirements.txt
 python scripts/generate_print_package.py --config config.json --output generated
 ```
 
-Or run:
+Or:
 
 ```bash
 make generate
 ```
 
-The generator is deterministic: the floor-plank arrangement is controlled by
-`random_seed` in `config.json`.
+The output is deterministic. `random_seed` controls stone variation, weathering, wood grain selection, plank widths and joints.
 
-## Modifying the design
+## Modify
 
-Most dimensional changes require editing only `config.json`:
+Dimensions are in `config.json`:
 
-- `wall.segments_mm` — panel widths and rear overlap;
-- `entrance` — opening size and corner radius;
-- `windows.centers_x_mm` — window positions along the unwrapped wall strip;
-- `windows.width_mm`, `height_mm`, `arch_height_mm` — opening geometry;
-- `floor.plank_width_min_mm`, `plank_width_max_mm` — model plank scale;
-- `dpi` — output raster resolution.
+- `wall.segments_mm` — panels and rear overlap;
+- `entrance` — opening dimensions and radius;
+- `windows` — positions, opening geometry and mounting bleed;
+- `floor.plank_width_min_mm` / `plank_width_max_mm` — scale of floorboards;
+- `dpi` — generated raster resolution.
 
-The stained-glass geometry and colors are generated in
-`scripts/generate_print_package.py`, primarily in `glass_group()`.
-The two designs are intentionally vector-based and can be modified without changing the
-stone or wood texture assets.
+Visual source code:
+
+- `scripts/textures.py` — stone palette, stone size, mortar, corner blocks, buttresses, entrance/window surrounds, moss, wood grain and knots;
+- `scripts/stained_glass.py` — colors, lead lines, Tree of Life, rose and fleur-de-lis;
+- `scripts/generate_print_package.py` — panel composition, openings, floor joints, PDF/SVG exports and preview.
+
+No stock photographs, external downloads or earlier chat assets are required.
 
 ## Print materials
 
-1. **Wall film:** opaque white permanent polymeric or cast exterior PVC, with matte UV laminate.
-2. **Stained glass:** translucent/backlit or clear stained-glass film. Do not add an opaque white
-   underprint behind the colored areas.
-3. **Attic floor:** exterior PVC film with matte UV laminate rated for horizontal exposure.
+1. Wall: opaque white permanent polymeric or cast exterior PVC, matte UV laminate.
+2. Stained glass: translucent/backlit film, without opaque white underprint behind colored areas.
+3. Attic floor: exterior PVC with matte UV laminate rated for horizontal exposure.
 
-Print every PDF at **100% scale**. Do not use `Fit to page`. The print shop should perform
-color conversion using the ICC profile for its selected printer, ink, film and laminate.
-A color, adhesion and actual-LED backlighting test is required before full production.
-
-## Source-art note
-
-The realistic stone, wood and visual-reference images in `assets/` were generated specifically
-for this project and then refined into the measured print layout. They are committed with the
-project so the output does not depend on an unavailable external image or an earlier chat session.
+Print all PDFs at **100%**, never `Fit to page`. The print shop should convert colors using its own printer/ink/film ICC profile and first test color, adhesion and the actual LED backlighting.
