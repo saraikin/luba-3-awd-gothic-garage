@@ -51,6 +51,34 @@ The visible front face ratio is:
 
 This is approximately 0.7% below the golden ratio and gives the lower module a balanced church-like facade while preserving practical internal clearance.
 
+### Actual assembled lower box measurements
+
+The following dimensions were measured after assembly and supersede the nominal lower-box dimensions where they differ:
+
+| Element | Actual measurement |
+|---|---:|
+| Front width, including the upper front edge | 998 mm |
+| Rear width at the lower edge | 997 mm |
+| Rear width at the upper edge | 997 mm |
+| Left side length / depth | 925 mm |
+| Right side length / depth | 925 mm |
+| Front wall height | 570 mm |
+| Rear wall measured height | 572 mm |
+| Height of each of the four upper corners from the floor | 570 mm |
+| Upper rectangle diagonal 1 | 1358 mm |
+| Upper rectangle diagonal 2 | 1356 mm |
+| Entrance width at floor level | 604 mm |
+| Entrance width immediately before the corner radii | 600 mm |
+| Entrance height | 365 mm |
+| Straight entrance height before the rounding begins | approximately 300 mm or slightly less |
+| Entrance corner-rounding diameter | 175 mm |
+| Front section to the left of the entrance | 200 mm |
+| Front section to the right of the entrance | 196 mm |
+
+The upper diagonals differ by only **2 mm**, so the assembled upper rectangle is practically square. The sum of the measured left section, floor-level entrance width and right section is **1000 mm**, versus the independently measured front width of **998 mm**; the 2 mm difference is treated as measurement tolerance.
+
+The next construction step is to prepare, print and apply the decorative vinyl film to this completed lower block. Roof design and construction will begin only after the lower block has been finished with film.
+
 ### Gable roof
 
 - **Gable rise above the lower box:** 280–300 mm
@@ -145,4 +173,4 @@ images/          Renders, construction photos, examples
 
 ## Current status
 
-The current dimensional baseline is fixed at **1000 × 900 × 560 mm** for the lower box, with a **280–300 mm** gable rise and a wide tower approximately **480–520 mm wide**, **450–500 mm deep**, and **450–500 mm high above the roof**. Final production drawings still require verification against the real Luba 3 AWD charging station, actual construction material thickness, joint overlap rules, hinge design, and installation site before any additional cutting.
+The lower box has been assembled. Its actual measured external dimensions are approximately **998 mm wide × 925 mm deep × 570 mm high**, with a rear width of **997 mm** and nearly equal upper diagonals of **1358 mm** and **1356 mm**. The entrance is approximately **604 mm wide at floor level**, **365 mm high**, and uses **175 mm diameter corner roundings**. The current task is to prepare and apply the printed decorative vinyl film; the roof is the next separate construction stage.
