@@ -30,8 +30,8 @@ def apply_corner_quoins(wall, cfg):
     ]
 
     row_height = max(4, mm_to_px(settings.get("row_height_mm", 34.0), dpi))
-    long_leg = max(4, mm_to_px(settings.get("long_leg_mm", 150.0), dpi))
-    short_leg = max(4, mm_to_px(settings.get("short_leg_mm", 105.0), dpi))
+    long_leg = max(4, mm_to_px(settings.get("long_leg_mm", 90.0), dpi))
+    short_leg = max(4, mm_to_px(settings.get("short_leg_mm", 65.0), dpi))
     mortar = max(1, mm_to_px(settings.get("mortar_mm", 3.0), dpi))
     start_y = max(0, mm_to_px(settings.get("start_y_mm", 0.0), dpi))
 
@@ -69,8 +69,6 @@ def apply_corner_quoins(wall, cfg):
             height = y1 - y
             x0 = fold_x - left_width
 
-            # The source generator contains an edge bevel. Generate a larger
-            # surface and crop its perimeter away, leaving only stone material.
             oversized = _make_dressed_stone(
                 total_width + texture_inset * 2,
                 height + texture_inset * 2,
@@ -93,8 +91,6 @@ def apply_corner_quoins(wall, cfg):
                 fill=255,
             )
 
-            # One blurred shadow surrounds the entire stone. Because the mask is
-            # continuous across fold_x, no line or split can reveal misalignment.
             shadow_margin = shadow_blur * 3 + max(
                 abs(shadow_offset_x), abs(shadow_offset_y)
             )
