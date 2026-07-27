@@ -7,7 +7,9 @@
     "top_fold_mm": 40.0,
     "segments_mm": [498.5, 925.0, 998.0, 925.0, 498.5, 30.0],
     "segment_names": ["rear_half_left", "left", "front", "right", "rear_half_right", "rear_overlap"],
-    "rear_seam_source_offset_mm": 42.0
+    "rear_seam_buttress_source_center_mm": 3675.0,
+    "rear_seam_buttress_half_width_mm": 58.0,
+    "rear_seam_buttress_feather_mm": 10.0
   },
   "entrance": {
     "bottom_width_mm": 604.0,
@@ -16,12 +18,11 @@
     "corner_radius_mm": 87.5
   },
   "windows": {
-    "centers_x_mm": [1022.0, 2732.0],
-    "top_mm": 112.0,
-    "width_mm": 98.0,
-    "height_mm": 300.0,
-    "arch_height_mm": 98.0,
-    "frame_width_mm": 18.0,
+    "centers_x_mm": [1047.5, 2733.5],
+    "top_mm": 118.0,
+    "width_mm": 90.0,
+    "height_mm": 294.0,
+    "arch_height_mm": 86.0,
     "mounting_bleed_mm": 8.0,
     "sheet_width_mm": 280.0,
     "sheet_height_mm": 330.0
@@ -41,6 +42,6 @@
     "joint_clearance_mm": 45.0
   },
   "assets": {
-    "wall_base": "assets/wall_base_realistic.jpg"
+    "wall_base": "assets/wall_artwork_realistic_75dpi.png"
   }
 }
