@@ -21,11 +21,14 @@
       "long_leg_mm": 150.0,
       "short_leg_mm": 105.0,
       "mortar_mm": 3.0,
-      "fold_shadow_mm": 1.5,
       "start_y_mm": 0.0,
+      "corner_radius_mm": 1.8,
+      "relief_shadow_blur_mm": 2.2,
+      "relief_shadow_offset_x_mm": 1.2,
+      "relief_shadow_offset_y_mm": 1.8,
+      "relief_shadow_opacity": 92,
       "material_base_rgb": [136, 121, 98],
-      "material_contrast": 1.32,
-      "outline_rgba": [38, 29, 21, 245]
+      "material_contrast": 1.32
     },
     "buttress_removal": {
       "enabled": true,
