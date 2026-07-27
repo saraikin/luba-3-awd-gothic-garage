@@ -1,8 +1,8 @@
 # Facade print package
 
-This directory contains the reproducible source for the lower-box vinyl graphics: measured geometry, realistic wall artwork, deterministic wall cleanup, exact cut paths, editable vector stained glass, floor texture generation and GitHub Actions automation.
+This directory is the reproducible source for the lower-box vinyl graphics: measured geometry, realistic wall cleanup, seamless corner quoins, exact cut paths, stained glass, floor texture generation, validation and GitHub Actions automation.
 
-## Current design
+## Fixed physical geometry
 
 ### Main wall film
 
@@ -10,32 +10,33 @@ This directory contains the reproducible source for the lower-box vinyl graphics
 - Wall sequence: **498.5 + 925 + 998 + 925 + 498.5 + 30 mm**.
 - The upper **40 mm** folds over the top surface.
 - Entrance: **604 mm** lower width, **600 mm** upper width, **365 mm** height and **87.5 mm** corner radius.
+- The final **30 mm** is an exact copy of the beginning and forms the rear installation overlap.
 
-### Buttresses and their shadows removed
+### Windows
 
-The realistic source image originally contained seven projecting buttresses and broad cast shadows. Removing only the visible buttress pixels left dark silhouettes in the wall, so the generator now rebuilds four wider cleanup zones from explicitly selected shadow-free masonry strips.
+- Left centre: **1047.5 mm**.
+- Right centre: **2733.5 mm**.
+- Visible opening: **90 × 294 mm**.
+- Opening top: **118 mm**.
+- Pointed-arch height: **86 mm**.
+- Mounting bleed: **8 mm**.
 
-The cleanup pipeline:
+The raster openings and vector cut contours use the same geometry functions.
 
-1. composites several clean masonry strips with cosine-feathered overlaps;
-2. preserves the original entrance and window surrounds with geometry-derived masks;
-3. performs low-frequency illumination normalization over the former shadow zones;
-4. tapers the correction near the bottom so the original moss and ground weathering remain natural.
+### Buttress removal
 
-No rear-centre buttress is retained. The rear installation seam is plain masonry.
+The realistic source originally contained seven projecting buttresses and broad cast shadows. The current preprocessing rebuilds wider cleanup zones from selected shadow-free masonry strips, preserves the entrance/window surrounds and normalizes residual low-frequency darkness. No rear-centre buttress remains.
 
-### Corner treatment: seamless dressed-limestone quoins
+### Seamless dressed-limestone quoins
 
-The four physical box corners use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
+The four physical corners are centred on the fold coordinates:
 
-The nominal quoin centres coincide with the four fold lines:
+- **498.5 mm** — rear-left;
+- **1423.5 mm** — front-left;
+- **2421.5 mm** — front-right;
+- **3346.5 mm** — rear-right.
 
-- **498.5 mm** — rear-left corner;
-- **1423.5 mm** — front-left corner;
-- **2421.5 mm** — front-right corner;
-- **3346.5 mm** — rear-right corner.
-
-Each row is generated as one continuous dressed-stone block across the nominal fold. There is no printed divider, colour transition, black outline or artificial fold shadow at the corner coordinate. A small installation offset therefore remains inside the same stone texture.
+Each row is one continuous stone spanning the nominal fold. There is no divider, colour transition, black outline or artificial fold line, so a small installation offset remains hidden inside the same texture.
 
 Current geometry:
 
@@ -44,22 +45,7 @@ Current geometry:
 - short extent: **65 mm** from the fold;
 - mortar gap: **3 mm**.
 
-The source stone is generated oversized and cropped inward by **4 mm** to remove any baked perimeter. Relief is created only with a soft blurred cast shadow and the stone's own tonal variation.
-
-### Rear-wall seam
-
-The artwork circuit ends at **3845 mm**. The following **30 mm** is an exact pixel-for-pixel copy of the beginning of the completed strip and serves as the installation overlap.
-
-### Lit stained-glass windows
-
-The white exterior wall film is opaque. The two openings are cut through the film and plywood; colored inserts are printed separately on translucent/backlit film and attached from inside.
-
-- Left window centre: **1047.5 mm**.
-- Right window centre: **2733.5 mm**.
-- Visible opening: **90 × 294 mm**.
-- Opening top: **118 mm**.
-- Pointed-arch height: **86 mm**.
-- Mounting bleed: **8 mm**.
+The quoin material is generated independently from the wall masonry. Relief comes from mineral variation and a soft blurred shadow, not a drawn frame.
 
 ### Attic floor
 
@@ -68,16 +54,75 @@ The white exterior wall film is opaque. The two openings are cut through the fil
 - Render resolution: **150 dpi**.
 - Plank width: **14–22 mm**.
 - Plank-piece length: **180–360 mm**.
-- Adjacent joints are kept at least **45 mm** apart where possible.
+- Adjacent joints are separated by at least **45 mm** where possible.
 
-## Reproduce
+## Source asset
+
+The production wall raster is intentionally not committed as an ordinary Git binary. Its authoritative archive is recorded in `assets/source_asset.json` with:
+
+- Google Drive file ID and owner-access URL;
+- archive SHA-256;
+- extracted asset SHA-256;
+- original PNG SHA-256;
+- dimensions, DPI, format and encoding quality.
+
+The expected archive is `luba_facade_source_asset_q85.zip`. The bootstrap script refuses to install an archive or image with a different checksum or size.
+
+## Reproduce from a clean checkout
 
 ```bash
 cd facade-print
 python -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python scripts/generate_print_package_v2.py --config config.json --output generated
+make setup
+make reproduce ASSET_ARCHIVE=/path/to/luba_facade_source_asset_q85.zip
 ```
 
-Print all PDFs at **100%**, never `Fit to page`.
+Equivalent individual commands:
+
+```bash
+python scripts/bootstrap_asset.py --archive /path/to/luba_facade_source_asset_q85.zip
+python scripts/validate_project.py --config config.json --require-asset
+python scripts/generate_print_package_v2.py --config config.json --output generated
+python scripts/validate_project.py --config config.json --require-asset --generated generated
+```
+
+`requirements.lock` pins the exact tested Python dependency versions. `config.json` contains every editable physical dimension and visual parameter. `random_seed` makes procedural parts deterministic.
+
+## Validation
+
+`validate_project.py` checks:
+
+- total strip length and all fold coordinates;
+- current quoin dimensions and corner indexes;
+- entrance and window geometry;
+- floor dimensions and DPI;
+- source asset checksum and pixel dimensions;
+- presence and basic dimensions of generated deliverables.
+
+GitHub Actions always validates the code and geometry. It generates the full package when the source archive is available through a direct workflow input URL or repository variable `FACADE_ASSET_ARCHIVE_URL`.
+
+## Important files
+
+```text
+facade-print/
+├── config.json
+├── requirements.txt
+├── requirements.lock
+├── Makefile
+├── assets/
+│   └── source_asset.json
+├── scripts/
+│   ├── bootstrap_asset.py
+│   ├── validate_project.py
+│   ├── generate_print_package.py
+│   ├── generate_print_package_v2.py
+│   ├── wall_preprocess.py
+│   ├── wall_preprocess_v2.py
+│   ├── common.py
+│   ├── stained_glass.py
+│   └── textures.py
+└── generated/
+```
+
+Print every production PDF at **100%**, never `Fit to page`.
