@@ -2,6 +2,11 @@ name: Build facade print package
 
 on:
   workflow_dispatch:
+    inputs:
+      asset_archive_url:
+        description: Optional direct URL to luba_facade_source_asset_q85.zip
+        required: false
+        type: string
   push:
     paths:
       - "facade-print/**"
@@ -12,31 +17,54 @@ on:
       - ".github/workflows/facade-print.yml"
 
 jobs:
-  generate:
+  validate-and-generate:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: facade-print
+    env:
+      ASSET_ARCHIVE_URL: ${{ inputs.asset_archive_url || vars.FACADE_ASSET_ARCHIVE_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: facade-print/requirements.txt
+          cache-dependency-path: facade-print/requirements.lock
       - name: Install native rendering libraries
         run: sudo apt-get update && sudo apt-get install -y libcairo2
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
+      - name: Install pinned Python dependencies
+        run: pip install -r requirements.lock
+      - name: Validate code and fixed geometry
+        run: python scripts/validate_project.py --config config.json
+      - name: Prepare verified realistic source asset
+        id: asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          ASSET="assets/wall_artwork_realistic_75dpi.webp"
+          if [[ -f "$ASSET" ]]; then
+            python scripts/bootstrap_asset.py --verify-only
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          elif [[ -n "${ASSET_ARCHIVE_URL:-}" ]]; then
+            curl --fail --location --retry 3 "$ASSET_ARCHIVE_URL" --output /tmp/luba_facade_source_asset_q85.zip
+            python scripts/bootstrap_asset.py --archive /tmp/luba_facade_source_asset_q85.zip
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "Source asset is not stored in Git. Configure repository variable FACADE_ASSET_ARCHIVE_URL or run workflow_dispatch with a direct archive URL."
+          fi
       - name: Generate all print files
-        id: generate
-        continue-on-error: true
+        if: steps.asset.outputs.available == 'true'
         run: |
           mkdir -p generated
           set -o pipefail
           python scripts/generate_print_package_v2.py --config config.json --output generated 2>&1 | tee generated/build.log
+      - name: Verify generated package
+        if: steps.asset.outputs.available == 'true'
+        run: python scripts/validate_project.py --config config.json --require-asset --generated generated
       - name: Upload print package and diagnostics
-        if: always()
+        if: steps.asset.outputs.available == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: luba-garage-facade-print
@@ -49,6 +77,3 @@ jobs:
             facade-print/generated/build.log
           if-no-files-found: error
           retention-days: 90
-      - name: Fail when generation failed
-        if: steps.generate.outcome == 'failure'
-        run: exit 1
