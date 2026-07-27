@@ -1,5 +1,1 @@
-Pillow>=10.0
-numpy>=1.26
-opencv-python-headless>=4.10
-reportlab>=4.0
-CairoSVG>=2.7
+-r requirements.lock
