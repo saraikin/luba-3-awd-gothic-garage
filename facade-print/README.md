@@ -13,57 +13,42 @@ This directory contains the reproducible source for the lower-box vinyl graphics
 
 ### Buttresses and their shadows removed
 
-The realistic source image originally contained seven projecting buttresses and broad cast shadows. Removing only the visible buttress pixels left dark silhouettes in the wall, so the generator now rebuilds four wider cleanup zones from explicitly selected shadow-free masonry strips.
-
-The cleanup pipeline:
-
-1. composites several clean masonry strips with cosine-feathered overlaps;
-2. preserves the original entrance and window surrounds with geometry-derived masks;
-3. performs low-frequency illumination normalization over the former shadow zones;
-4. tapers the correction near the bottom so the original moss and ground weathering remain natural.
-
-Editable settings are stored under `wall.buttress_removal`:
-
-- `cleanup_zones` — broad areas containing each buttress and its shadow;
-- `clean_source_intervals_mm` — verified plain-masonry source strips;
-- `tile_min_width_mm` / `tile_max_width_mm` — source-piece variation;
-- `tile_overlap_mm` and `feather_mm` — seamless blending;
-- `window_frame_preserve_mm` and `entrance_frame_preserve_mm` — protected decorative surrounds.
+The realistic source image originally contained seven projecting buttresses and broad cast shadows. The generator rebuilds four wider cleanup zones from selected shadow-free masonry strips, preserves the entrance and window surrounds, and normalizes residual low-frequency darkness. Bottom moss and ground weathering are retained.
 
 No rear-centre buttress is retained. The rear installation seam is plain masonry.
 
 The build exports `BUTTRESS_AND_SHADOW_REMOVAL_DIAGNOSTICS.jpg` and `WALL_SHADOW_FREE_PROMINENT_QUOINS_PREVIEW.jpg`.
 
-### Corner treatment: dressed-limestone quoins
+### Corner treatment: seamless dressed-limestone quoins
 
 The four physical box corners use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
 
-The quoin centres are derived from the cumulative wall-segment dimensions and coincide exactly with the four fold lines:
+The nominal fold coordinates are:
 
 - **498.5 mm** — rear-left corner;
 - **1423.5 mm** — front-left corner;
 - **2421.5 mm** — front-right corner;
 - **3346.5 mm** — rear-right corner.
 
-Every masonry course crosses its fold line. Long and short legs alternate between the adjacent wall faces, so the corner reads as one continuous reinforced element after wrapping.
+Each row is generated as **one uninterrupted stone block spanning both sides of the nominal fold**. There is no printed divider, colour transition, black outline or artificial fold shadow at the corner coordinate. If the physical fold shifts slightly during installation, it still falls inside the same continuous stone texture and the error is not exposed.
 
-The quoins no longer copy the field-wall texture. Each block receives a separately generated rough dressed-limestone surface with:
+Long and short extents alternate by row, but they are only the outer limits of one continuous block:
 
-- multi-scale mineral variation;
-- pits and short chisel marks;
-- occasional fine cracks;
-- subtle printed edge bevels;
-- a controlled warm limestone palette distinct from the dark irregular field masonry.
+- row height: **34 mm**;
+- long extent from the fold: **150 mm**;
+- short extent from the fold: **105 mm**;
+- mortar gap: **3 mm**.
 
-Current editable geometry:
+The blocks use a separate rough dressed-limestone texture with mineral variation, pores, chisel marks and occasional fine cracks. The former hard black frame has been removed. Relief is conveyed by:
 
-- row height: **68 mm**;
-- long leg: **205 mm** from the fold;
-- short leg: **150 mm** from the fold;
-- mortar gap: **5 mm**;
-- fold shadow: **2 mm**.
+- one soft blurred shadow around the complete stone;
+- a slight downward/right shadow offset;
+- the stone texture's natural light and dark variation;
+- gently rounded printed corners.
 
-`CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg` verifies the four fold centres, and `FRONT_QUOIN_NEW_TEXTURE_DETAIL.jpg` shows the new material at print resolution.
+The stone texture is generated oversized and cropped inward by **4 mm**, removing the source generator's baked perimeter bevel before the soft shadow is applied.
+
+`CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg` verifies nominal fold positions, while `FRONT_QUOIN_NEW_TEXTURE_DETAIL.jpg` shows the final material at print resolution.
 
 ### Rear-wall seam
 
@@ -106,6 +91,7 @@ facade-print/
 │   ├── stained_glass.py
 │   ├── common.py
 │   ├── wall_preprocess.py
+│   ├── wall_preprocess_v2.py
 │   ├── generate_print_package.py
 │   └── generate_print_package_v2.py
 └── generated/
