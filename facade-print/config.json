@@ -77,6 +77,6 @@
     "joint_clearance_mm": 45.0
   },
   "assets": {
-    "wall_base": "assets/wall_artwork_realistic_75dpi.jpg"
+    "wall_base": "assets/wall_artwork_realistic_75dpi.png"
   }
 }
