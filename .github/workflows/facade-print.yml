@@ -37,23 +37,26 @@ jobs:
         run: pip install -r requirements.lock
       - name: Validate code and fixed geometry
         run: python scripts/validate_project.py --config config.json
+        
       - name: Prepare verified realistic source asset
         id: asset
         shell: bash
         run: |
           set -euo pipefail
+
           ASSET="assets/wall_artwork_realistic_75dpi.webp"
+          LOCAL_ARCHIVE="assets/luba_facade_source_asset_q85.zip"
+
           if [[ -f "$ASSET" ]]; then
             python scripts/bootstrap_asset.py --verify-only
-            echo "available=true" >> "$GITHUB_OUTPUT"
-          elif [[ -n "${ASSET_ARCHIVE_URL:-}" ]]; then
-            curl --fail --location --retry 3 "$ASSET_ARCHIVE_URL" --output /tmp/luba_facade_source_asset_q85.zip
-            python scripts/bootstrap_asset.py --archive /tmp/luba_facade_source_asset_q85.zip
-            echo "available=true" >> "$GITHUB_OUTPUT"
+          elif [[ -f "$LOCAL_ARCHIVE" ]]; then
+            python scripts/bootstrap_asset.py --archive "$LOCAL_ARCHIVE"
           else
-            echo "available=false" >> "$GITHUB_OUTPUT"
-            echo "Source asset is not stored in Git. Configure repository variable FACADE_ASSET_ARCHIVE_URL or run workflow_dispatch with a direct archive URL."
+            echo "Missing source archive: $LOCAL_ARCHIVE"
+            exit 1
           fi
+          echo "available=true" >> "$GITHUB_OUTPUT"
+          
       - name: Generate all print files
         if: steps.asset.outputs.available == 'true'
         run: |
