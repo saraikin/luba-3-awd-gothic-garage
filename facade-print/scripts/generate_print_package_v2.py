@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import generate_print_package as generator
-from wall_preprocess import (
+from wall_preprocess_v2 import (
     apply_corner_quoins,
     remove_source_buttresses,
     save_buttress_removal_diagnostics,
@@ -18,7 +18,7 @@ def _save_wall_diagnostics(wall, cfg, out):
 
 
 # The existing generator keeps the stable PDF/SVG/floor pipeline. These three
-# wall-specific hooks replace the old rear-seam buttress and corner treatment.
+# wall-specific hooks replace the old buttress and corner treatment.
 generator._restore_rear_seam_buttress = remove_source_buttresses
 generator._apply_corner_quoins = apply_corner_quoins
 generator._save_wall_diagnostics = _save_wall_diagnostics
