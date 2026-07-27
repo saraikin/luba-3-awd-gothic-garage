@@ -1,0 +1,18 @@
+{
+  "asset_file": "wall_artwork_realistic_75dpi.webp",
+  "archive_file": "luba_facade_source_asset_q85.zip",
+  "archive_drive_id": "1gMxrwUN87939b3WMtKfN7AGrhu7W_Ezd",
+  "archive_drive_url": "https://drive.google.com/file/d/1gMxrwUN87939b3WMtKfN7AGrhu7W_Ezd/view?usp=drivesdk",
+  "archive_sha256": "6dddb7c29ff4d106a9d0d8940eda3f8f88ab82bc870d2d7f8745ee85b1ac49f8",
+  "asset_sha256": "163b56fe1a66103d284c05c57b14038afa31c774dfc8d0283e0486803a856f75",
+  "original_png_sha256": "7c373b0e2861118a943b08d65c05027b0152a80e0c9dec72b3377e0cfdd24e66",
+  "asset_size_bytes": 1669942,
+  "width_px": 11442,
+  "height_px": 1801,
+  "physical_width_mm": 3875.0,
+  "physical_height_mm": 610.0,
+  "dpi": 75,
+  "format": "WEBP",
+  "quality": 85,
+  "notes": "Production source archived in the project owner's Google Drive. Run scripts/bootstrap_asset.py with the downloaded archive before generating the print package."
+}
