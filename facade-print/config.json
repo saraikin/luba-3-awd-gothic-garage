@@ -5,14 +5,7 @@
     "width_mm": 3875.0,
     "height_mm": 610.0,
     "top_fold_mm": 40.0,
-    "segments_mm": [
-      498.5,
-      925.0,
-      998.0,
-      925.0,
-      498.5,
-      30.0
-    ],
+    "segments_mm": [498.5, 925.0, 998.0, 925.0, 498.5, 30.0],
     "segment_names": [
       "rear_half_left",
       "left",
@@ -23,67 +16,36 @@
     ],
     "corner_quoins": {
       "enabled": true,
-      "boundary_indexes": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "row_height_mm": 62.0,
-      "long_leg_mm": 185.0,
-      "short_leg_mm": 135.0,
-      "mortar_mm": 4.0,
-      "fold_shadow_mm": 2.5,
+      "boundary_indexes": [1, 2, 3, 4],
+      "row_height_mm": 68.0,
+      "long_leg_mm": 205.0,
+      "short_leg_mm": 150.0,
+      "mortar_mm": 5.0,
+      "fold_shadow_mm": 2.0,
       "start_y_mm": 0.0,
-      "texture_source_half_width_mm": 130.0,
-      "texture_source_center_mm": 820.0
+      "material_base_rgb": [136, 121, 98],
+      "material_contrast": 1.32,
+      "outline_rgba": [38, 29, 21, 245]
     },
     "buttress_removal": {
       "enabled": true,
-      "feather_mm": 18.0,
-      "zones": [
-        {
-          "start_mm": 90.0,
-          "end_mm": 330.0,
-          "source_center_mm": 790.0,
-          "flip": false
-        },
-        {
-          "start_mm": 485.0,
-          "end_mm": 690.0,
-          "source_center_mm": 790.0,
-          "flip": true
-        },
-        {
-          "start_mm": 1335.0,
-          "end_mm": 1525.0,
-          "source_center_mm": 1210.0,
-          "flip": false
-        },
-        {
-          "start_mm": 2285.0,
-          "end_mm": 2410.0,
-          "source_center_mm": 2520.0,
-          "flip": true
-        },
-        {
-          "start_mm": 3015.0,
-          "end_mm": 3210.0,
-          "source_center_mm": 2890.0,
-          "flip": false
-        },
-        {
-          "start_mm": 3280.0,
-          "end_mm": 3530.0,
-          "source_center_mm": 790.0,
-          "flip": false
-        },
-        {
-          "start_mm": 3590.0,
-          "end_mm": 3780.0,
-          "source_center_mm": 790.0,
-          "flip": true
-        }
+      "feather_mm": 32.0,
+      "tile_overlap_mm": 22.0,
+      "tile_min_width_mm": 72.0,
+      "tile_max_width_mm": 112.0,
+      "window_frame_preserve_mm": 27.0,
+      "entrance_frame_preserve_mm": 48.0,
+      "clean_source_intervals_mm": [
+        [870.0, 965.0],
+        [1120.0, 1235.0],
+        [2500.0, 2635.0],
+        [2825.0, 2940.0]
+      ],
+      "cleanup_zones": [
+        [0.0, 900.0],
+        [1210.0, 1650.0],
+        [2150.0, 2510.0],
+        [2920.0, 3845.0]
       ]
     }
   },
@@ -94,10 +56,7 @@
     "corner_radius_mm": 87.5
   },
   "windows": {
-    "centers_x_mm": [
-      1047.5,
-      2733.5
-    ],
+    "centers_x_mm": [1047.5, 2733.5],
     "top_mm": 118.0,
     "width_mm": 90.0,
     "height_mm": 294.0,
