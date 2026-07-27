@@ -13,42 +13,38 @@ This directory contains the reproducible source for the lower-box vinyl graphics
 
 ### Buttresses and their shadows removed
 
-The realistic source image originally contained seven projecting buttresses and broad cast shadows. The generator rebuilds four wider cleanup zones from selected shadow-free masonry strips, preserves the entrance and window surrounds, and normalizes residual low-frequency darkness. Bottom moss and ground weathering are retained.
+The realistic source image originally contained seven projecting buttresses and broad cast shadows. Removing only the visible buttress pixels left dark silhouettes in the wall, so the generator now rebuilds four wider cleanup zones from explicitly selected shadow-free masonry strips.
+
+The cleanup pipeline:
+
+1. composites several clean masonry strips with cosine-feathered overlaps;
+2. preserves the original entrance and window surrounds with geometry-derived masks;
+3. performs low-frequency illumination normalization over the former shadow zones;
+4. tapers the correction near the bottom so the original moss and ground weathering remain natural.
 
 No rear-centre buttress is retained. The rear installation seam is plain masonry.
-
-The build exports `BUTTRESS_AND_SHADOW_REMOVAL_DIAGNOSTICS.jpg` and `WALL_SHADOW_FREE_PROMINENT_QUOINS_PREVIEW.jpg`.
 
 ### Corner treatment: seamless dressed-limestone quoins
 
 The four physical box corners use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
 
-The nominal fold coordinates are:
+The nominal quoin centres coincide with the four fold lines:
 
 - **498.5 mm** — rear-left corner;
 - **1423.5 mm** — front-left corner;
 - **2421.5 mm** — front-right corner;
 - **3346.5 mm** — rear-right corner.
 
-Each row is generated as **one uninterrupted stone block spanning both sides of the nominal fold**. There is no printed divider, colour transition, black outline or artificial fold shadow at the corner coordinate. If the physical fold shifts slightly during installation, it still falls inside the same continuous stone texture and the error is not exposed.
+Each row is generated as one continuous dressed-stone block across the nominal fold. There is no printed divider, colour transition, black outline or artificial fold shadow at the corner coordinate. A small installation offset therefore remains inside the same stone texture.
 
-Long and short extents alternate by row, but they are only the outer limits of one continuous block:
+Current geometry:
 
 - row height: **34 mm**;
-- long extent from the fold: **150 mm**;
-- short extent from the fold: **105 mm**;
+- long extent: **90 mm** from the fold;
+- short extent: **65 mm** from the fold;
 - mortar gap: **3 mm**.
 
-The blocks use a separate rough dressed-limestone texture with mineral variation, pores, chisel marks and occasional fine cracks. The former hard black frame has been removed. Relief is conveyed by:
-
-- one soft blurred shadow around the complete stone;
-- a slight downward/right shadow offset;
-- the stone texture's natural light and dark variation;
-- gently rounded printed corners.
-
-The stone texture is generated oversized and cropped inward by **4 mm**, removing the source generator's baked perimeter bevel before the soft shadow is applied.
-
-`CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg` verifies nominal fold positions, while `FRONT_QUOIN_NEW_TEXTURE_DETAIL.jpg` shows the final material at print resolution.
+The source stone is generated oversized and cropped inward by **4 mm** to remove any baked perimeter. Relief is created only with a soft blurred cast shadow and the stone's own tonal variation.
 
 ### Rear-wall seam
 
@@ -65,8 +61,6 @@ The white exterior wall film is opaque. The two openings are cut through the fil
 - Pointed-arch height: **86 mm**.
 - Mounting bleed: **8 mm**.
 
-The raster opening masks and SVG/PDF cut contours use the same geometry.
-
 ### Attic floor
 
 - Print file: **1004 × 931 mm**.
@@ -76,32 +70,7 @@ The raster opening masks and SVG/PDF cut contours use the same geometry.
 - Plank-piece length: **180–360 mm**.
 - Adjacent joints are kept at least **45 mm** apart where possible.
 
-Every plank piece receives its own grain, knots, tonal variation and random seed at the final physical print scale.
-
-## Structure
-
-```text
-facade-print/
-├── config.json
-├── requirements.txt
-├── Makefile
-├── assets/
-├── scripts/
-│   ├── textures.py
-│   ├── stained_glass.py
-│   ├── common.py
-│   ├── wall_preprocess.py
-│   ├── wall_preprocess_v2.py
-│   ├── generate_print_package.py
-│   └── generate_print_package_v2.py
-└── generated/
-
-.github/workflows/facade-print.yml
-```
-
 ## Reproduce
-
-Python 3.11 or newer:
 
 ```bash
 cd facade-print
@@ -111,18 +80,4 @@ pip install -r requirements.txt
 python scripts/generate_print_package_v2.py --config config.json --output generated
 ```
 
-Or:
-
-```bash
-make generate
-```
-
-The output is deterministic. `random_seed` controls masonry replacement choices, quoin material variation, wood grain, plank widths, board lengths and joints.
-
-## Print materials
-
-1. Wall: opaque white permanent polymeric or cast exterior PVC, matte UV laminate.
-2. Stained glass: translucent/backlit film, without opaque white underprint behind colored areas.
-3. Attic floor: exterior PVC with matte UV laminate rated for horizontal exposure.
-
-Print all PDFs at **100%**, never `Fit to page`. The print shop should convert colors using its own printer/ink/film ICC profile and first test color, adhesion and actual LED backlighting.
+Print all PDFs at **100%**, never `Fit to page`.
