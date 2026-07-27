@@ -1,6 +1,6 @@
 # Facade print package
 
-This directory contains the reproducible source for the lower-box vinyl graphics: measured geometry, realistic wall artwork, deterministic corner treatment, exact cut paths, editable vector stained glass, floor texture generation and GitHub Actions automation.
+This directory contains the reproducible source for the lower-box vinyl graphics: measured geometry, realistic wall artwork, deterministic wall cleanup, exact cut paths, editable vector stained glass, floor texture generation and GitHub Actions automation.
 
 ## Current design
 
@@ -11,36 +11,59 @@ This directory contains the reproducible source for the lower-box vinyl graphics
 - The upper **40 mm** folds over the top surface.
 - Entrance: **604 mm** lower width, **600 mm** upper width, **365 mm** height and **87.5 mm** corner radius.
 
-### Buttresses removed
+### Buttresses and their shadows removed
 
-The realistic source image originally contained seven projecting buttresses. The generator now removes all seven before any corner treatment is added. Each configured zone is replaced with a feathered clone of nearby plain realistic masonry; the entrance and window geometry remain unchanged.
+The realistic source image originally contained seven projecting buttresses and broad cast shadows. Removing only the visible buttress pixels left dark silhouettes in the wall, so the generator now rebuilds four wider cleanup zones from explicitly selected shadow-free masonry strips.
 
-The editable removal zones are stored under `wall.buttress_removal.zones` in `config.json`. The build exports `BUTTRESS_REMOVAL_DIAGNOSTICS.jpg` so every former buttress position can be checked.
+The cleanup pipeline:
+
+1. composites several clean masonry strips with cosine-feathered overlaps;
+2. preserves the original entrance and window surrounds with geometry-derived masks;
+3. performs low-frequency illumination normalization over the former shadow zones;
+4. tapers the correction near the bottom so the original moss and ground weathering remain natural.
+
+Editable settings are stored under `wall.buttress_removal`:
+
+- `cleanup_zones` — broad areas containing each buttress and its shadow;
+- `clean_source_intervals_mm` — verified plain-masonry source strips;
+- `tile_min_width_mm` / `tile_max_width_mm` — source-piece variation;
+- `tile_overlap_mm` and `feather_mm` — seamless blending;
+- `window_frame_preserve_mm` and `entrance_frame_preserve_mm` — protected decorative surrounds.
 
 No rear-centre buttress is retained. The rear installation seam is plain masonry.
 
-### Corner treatment: prominent quoins / corner rustication
+The build exports `BUTTRESS_AND_SHADOW_REMOVAL_DIAGNOSTICS.jpg` and `WALL_SHADOW_FREE_PROMINENT_QUOINS_PREVIEW.jpg`.
+
+### Corner treatment: dressed-limestone quoins
 
 The four physical box corners use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
 
-The quoin centres are derived from the cumulative wall-segment dimensions and therefore coincide exactly with the four fold lines:
+The quoin centres are derived from the cumulative wall-segment dimensions and coincide exactly with the four fold lines:
 
 - **498.5 mm** — rear-left corner;
 - **1423.5 mm** — front-left corner;
 - **2421.5 mm** — front-right corner;
 - **3346.5 mm** — rear-right corner.
 
-Every masonry course crosses its fold line. Long and short legs alternate between the two adjacent wall faces, so the corner reads as one continuous reinforced element after the film is wrapped.
+Every masonry course crosses its fold line. Long and short legs alternate between the adjacent wall faces, so the corner reads as one continuous reinforced element after wrapping.
 
-Current editable quoin geometry:
+The quoins no longer copy the field-wall texture. Each block receives a separately generated rough dressed-limestone surface with:
 
-- row height: **62 mm**;
-- long leg: **185 mm** from the fold;
-- short leg: **135 mm** from the fold;
-- mortar gap: **4 mm**;
-- fold shadow: **2.5 mm**.
+- multi-scale mineral variation;
+- pits and short chisel marks;
+- occasional fine cracks;
+- subtle printed edge bevels;
+- a controlled warm limestone palette distinct from the dark irregular field masonry.
 
-The quoin stones are brighter and higher-contrast than the field masonry, with stronger outlines and highlights. The generator exports `CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg`; its red lines pass through the exact four fold centres.
+Current editable geometry:
+
+- row height: **68 mm**;
+- long leg: **205 mm** from the fold;
+- short leg: **150 mm** from the fold;
+- mortar gap: **5 mm**;
+- fold shadow: **2 mm**.
+
+`CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg` verifies the four fold centres, and `FRONT_QUOIN_NEW_TEXTURE_DETAIL.jpg` shows the new material at print resolution.
 
 ### Rear-wall seam
 
@@ -108,27 +131,7 @@ Or:
 make generate
 ```
 
-The output is deterministic. `random_seed` controls masonry replacement choices, quoin texture variation, wood grain, plank widths, board lengths and joints.
-
-## Modify
-
-Dimensions are in `config.json`:
-
-- `wall.segments_mm` — panels and rear overlap;
-- `wall.buttress_removal.zones` — exact original-buttress areas and plain-masonry clone sources;
-- `wall.buttress_removal.feather_mm` — blend width at replacement edges;
-- `wall.corner_quoins.boundary_indexes` — segment boundaries that receive quoins;
-- `wall.corner_quoins.row_height_mm` — quoin course height;
-- `wall.corner_quoins.long_leg_mm` / `short_leg_mm` — alternating distances from the fold;
-- `wall.corner_quoins.mortar_mm` — gap between courses;
-- `wall.corner_quoins.fold_shadow_mm` — printed fold emphasis;
-- `entrance` — opening dimensions and radius;
-- `windows` — positions and opening geometry;
-- `floor.dpi` — floor raster resolution;
-- `floor.plank_width_min_mm` / `plank_width_max_mm` — scale of floorboards;
-- `floor.plank_length_min_mm` / `plank_length_max_mm` — board-piece lengths;
-- `floor.joint_clearance_mm` — preferred distance between adjacent joints;
-- `dpi` — wall and stained-glass raster resolution.
+The output is deterministic. `random_seed` controls masonry replacement choices, quoin material variation, wood grain, plank widths, board lengths and joints.
 
 ## Print materials
 
