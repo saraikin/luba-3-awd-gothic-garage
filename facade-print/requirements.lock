@@ -1,0 +1,5 @@
+Pillow==12.2.0
+numpy==2.3.5
+opencv-python-headless==4.13.0.92
+reportlab==4.4.9
+CairoSVG==2.8.2

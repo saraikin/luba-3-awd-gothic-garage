@@ -6,7 +6,52 @@
     "height_mm": 610.0,
     "top_fold_mm": 40.0,
     "segments_mm": [498.5, 925.0, 998.0, 925.0, 498.5, 30.0],
-    "segment_names": ["rear_half_left", "left", "front", "right", "rear_half_right", "rear_overlap"]
+    "segment_names": [
+      "rear_half_left",
+      "left",
+      "front",
+      "right",
+      "rear_half_right",
+      "rear_overlap"
+    ],
+    "corner_quoins": {
+      "enabled": true,
+      "boundary_indexes": [1, 2, 3, 4],
+      "row_height_mm": 34.0,
+      "long_leg_mm": 90.0,
+      "short_leg_mm": 65.0,
+      "mortar_mm": 3.0,
+      "start_y_mm": 0.0,
+      "corner_radius_mm": 1.8,
+      "texture_edge_crop_mm": 4.0,
+      "relief_shadow_blur_mm": 2.8,
+      "relief_shadow_offset_x_mm": 1.0,
+      "relief_shadow_offset_y_mm": 1.6,
+      "relief_shadow_opacity": 76,
+      "material_base_rgb": [136, 121, 98],
+      "material_contrast": 1.32
+    },
+    "buttress_removal": {
+      "enabled": true,
+      "feather_mm": 32.0,
+      "tile_overlap_mm": 22.0,
+      "tile_min_width_mm": 72.0,
+      "tile_max_width_mm": 112.0,
+      "window_frame_preserve_mm": 27.0,
+      "entrance_frame_preserve_mm": 48.0,
+      "clean_source_intervals_mm": [
+        [870.0, 965.0],
+        [1120.0, 1235.0],
+        [2500.0, 2635.0],
+        [2825.0, 2940.0]
+      ],
+      "cleanup_zones": [
+        [0.0, 900.0],
+        [1210.0, 1650.0],
+        [2150.0, 2510.0],
+        [2920.0, 3845.0]
+      ]
+    }
   },
   "entrance": {
     "bottom_width_mm": 604.0,
@@ -15,12 +60,11 @@
     "corner_radius_mm": 87.5
   },
   "windows": {
-    "centers_x_mm": [1022.0, 2732.0],
-    "top_mm": 112.0,
-    "width_mm": 98.0,
-    "height_mm": 300.0,
-    "arch_height_mm": 98.0,
-    "frame_width_mm": 18.0,
+    "centers_x_mm": [1047.5, 2733.5],
+    "top_mm": 118.0,
+    "width_mm": 90.0,
+    "height_mm": 294.0,
+    "arch_height_mm": 86.0,
     "mounting_bleed_mm": 8.0,
     "sheet_width_mm": 280.0,
     "sheet_height_mm": 330.0
@@ -38,5 +82,9 @@
     "plank_length_min_mm": 180.0,
     "plank_length_max_mm": 360.0,
     "joint_clearance_mm": 45.0
+  },
+  "assets": {
+    "wall_base": "assets/wall_artwork_realistic_75dpi.webp",
+    "manifest": "assets/source_asset.json"
   }
 }

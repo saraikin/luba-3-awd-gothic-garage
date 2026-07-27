@@ -2,6 +2,10 @@
 __pycache__/
 *.pyc
 
+# The production raster is bootstrapped from the verified source archive.
+assets/wall_artwork_realistic_75dpi.webp
+assets/wall_artwork_realistic_75dpi.webp.tmp
+
 # Generated print artifacts are reproducible and uploaded by GitHub Actions.
 generated/*
 !generated/README.md
