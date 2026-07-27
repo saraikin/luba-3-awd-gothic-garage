@@ -14,5 +14,13 @@
   "dpi": 75,
   "format": "WEBP",
   "quality": 85,
-  "notes": "Production source archived in the project owner's Google Drive. Run scripts/bootstrap_asset.py with the downloaded archive before generating the print package."
+  "tested_generation": {
+    "python": "3.13",
+    "wall_pdf_sha256": "7cb84cc2d3cdc977dca184beedd0a7304157b1c35f5ee36929e6c4986a8d6171",
+    "wall_raster_sha256": "6e3cf37a19cc9f6c7c6a4d2c1413176cfdd3cdf6b562d0637944f655d817abb7",
+    "preview_sha256": "26ef9bd2a687334914d7dce1f0684d7139ed33310dccb961c7968cf74eb77403",
+    "wall_raster_size_px": [11442, 1801],
+    "preview_size_px": [1880, 1505]
+  },
+  "notes": "Production source archived in the project owner's Google Drive. Run scripts/bootstrap_asset.py with the downloaded archive before generating the print package. PDF hashes may vary if the rendering-library versions differ; requirements.lock records the tested versions."
 }
