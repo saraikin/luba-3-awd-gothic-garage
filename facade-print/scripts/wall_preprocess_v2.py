@@ -11,26 +11,12 @@ from wall_preprocess import (
 )
 
 
-def _soft_shadow_mask(size, radius_px, offset_x_px, offset_y_px, opacity):
-    mask = Image.new("L", size, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.rounded_rectangle(
-        [0, 0, size[0] - 1, size[1] - 1],
-        radius=radius_px,
-        fill=opacity,
-    )
-    blurred = mask.filter(ImageFilter.GaussianBlur(radius=max(1, radius_px)))
-    shifted = Image.new("L", size, 0)
-    shifted.paste(blurred, (offset_x_px, offset_y_px))
-    return shifted
-
-
 def apply_corner_quoins(wall, cfg):
-    """Draw one continuous dressed-stone block across each corner fold.
+    """Draw uninterrupted dressed-stone blocks across the physical folds.
 
-    The artwork contains no split line, no fold shadow and no texture change at
-    the nominal corner coordinate. A small installation error therefore remains
-    inside the same uninterrupted stone surface and is not visually exposed.
+    There is no printed divider, colour change, black outline or fold shadow at
+    the nominal corner coordinate. If the real fold shifts slightly during
+    installation, it still falls inside one continuous stone texture.
     """
     settings = cfg["wall"].get("corner_quoins", {})
     if not settings.get("enabled", True):
@@ -52,16 +38,19 @@ def apply_corner_quoins(wall, cfg):
     corner_radius = max(
         1, mm_to_px(settings.get("corner_radius_mm", 1.8), dpi)
     )
+    texture_inset = max(
+        2, mm_to_px(settings.get("texture_edge_crop_mm", 4.0), dpi)
+    )
     shadow_blur = max(
-        1, mm_to_px(settings.get("relief_shadow_blur_mm", 2.2), dpi)
+        1, mm_to_px(settings.get("relief_shadow_blur_mm", 2.8), dpi)
     )
     shadow_offset_x = mm_to_px(
-        settings.get("relief_shadow_offset_x_mm", 1.2), dpi
+        settings.get("relief_shadow_offset_x_mm", 1.0), dpi
     )
     shadow_offset_y = mm_to_px(
-        settings.get("relief_shadow_offset_y_mm", 1.8), dpi
+        settings.get("relief_shadow_offset_y_mm", 1.6), dpi
     )
-    shadow_opacity = int(settings.get("relief_shadow_opacity", 92))
+    shadow_opacity = int(settings.get("relief_shadow_opacity", 76))
 
     for corner_index, fold_x in enumerate(folds):
         y = start_y
@@ -80,11 +69,21 @@ def apply_corner_quoins(wall, cfg):
             height = y1 - y
             x0 = fold_x - left_width
 
-            stone = _make_dressed_stone(
-                total_width,
-                height,
+            # The source generator contains an edge bevel. Generate a larger
+            # surface and crop its perimeter away, leaving only stone material.
+            oversized = _make_dressed_stone(
+                total_width + texture_inset * 2,
+                height + texture_inset * 2,
                 cfg["random_seed"] + 30000 + corner_index * 503 + row * 17,
                 cfg,
+            )
+            stone = oversized.crop(
+                (
+                    texture_inset,
+                    texture_inset,
+                    texture_inset + total_width,
+                    texture_inset + height,
+                )
             )
 
             shape_mask = Image.new("L", (total_width, height), 0)
@@ -94,6 +93,8 @@ def apply_corner_quoins(wall, cfg):
                 fill=255,
             )
 
+            # One blurred shadow surrounds the entire stone. Because the mask is
+            # continuous across fold_x, no line or split can reveal misalignment.
             shadow_margin = shadow_blur * 3 + max(
                 abs(shadow_offset_x), abs(shadow_offset_y)
             )
@@ -131,8 +132,6 @@ def apply_corner_quoins(wall, cfg):
                 stone_rgba.getchannel("A"),
             )
 
-            # No outline and no mark at fold_x. Relief is created only by the
-            # soft cast shadow and the stone's own light/dark bevels.
             y += row_height
             row += 1
 
