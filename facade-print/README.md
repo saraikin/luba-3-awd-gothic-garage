@@ -11,9 +11,17 @@ This directory contains the reproducible source for the lower-box vinyl graphics
 - The upper **40 mm** folds over the top surface.
 - Entrance: **604 mm** lower width, **600 mm** upper width, **365 mm** height and **87.5 mm** corner radius.
 
-### Corner treatment: quoins / corner rustication
+### Buttresses removed
 
-The four physical box corners no longer rely on projecting buttresses. They use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
+The realistic source image originally contained seven projecting buttresses. The generator now removes all seven before any corner treatment is added. Each configured zone is replaced with a feathered clone of nearby plain realistic masonry; the entrance and window geometry remain unchanged.
+
+The editable removal zones are stored under `wall.buttress_removal.zones` in `config.json`. The build exports `BUTTRESS_REMOVAL_DIAGNOSTICS.jpg` so every former buttress position can be checked.
+
+No rear-centre buttress is retained. The rear installation seam is plain masonry.
+
+### Corner treatment: prominent quoins / corner rustication
+
+The four physical box corners use flat reinforced corner masonry: **quoins**, also described as **corner rustication** or **quoin stones**.
 
 The quoin centres are derived from the cumulative wall-segment dimensions and therefore coincide exactly with the four fold lines:
 
@@ -24,25 +32,23 @@ The quoin centres are derived from the cumulative wall-segment dimensions and th
 
 Every masonry course crosses its fold line. Long and short legs alternate between the two adjacent wall faces, so the corner reads as one continuous reinforced element after the film is wrapped.
 
-Default editable quoin geometry:
+Current editable quoin geometry:
 
-- row height: **55 mm**;
-- long leg: **150 mm** from the fold;
-- short leg: **105 mm** from the fold;
-- mortar gap: **3 mm**;
-- fold shadow: **1.5 mm**.
+- row height: **62 mm**;
+- long leg: **185 mm** from the fold;
+- short leg: **135 mm** from the fold;
+- mortar gap: **4 mm**;
+- fold shadow: **2.5 mm**.
 
-The generator also exports `CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg`. Its red lines show the exact four folds through the centres of the generated corner masonry.
+The quoin stones are brighter and higher-contrast than the field masonry, with stronger outlines and highlights. The generator exports `CORNER_QUOIN_ALIGNMENT_DIAGNOSTICS.jpg`; its red lines pass through the exact four fold centres.
 
 ### Rear-wall seam
 
-The artwork circuit ends at **3845 mm**. The following **30 mm** is an exact pixel-for-pixel copy of the beginning of the finished strip and serves as the installation overlap.
-
-A separate realistic buttress remains centred on the rear-wall installation seam. It is not one of the four physical corner elements.
+The artwork circuit ends at **3845 mm**. The following **30 mm** is an exact pixel-for-pixel copy of the beginning of the completed strip and serves as the installation overlap.
 
 ### Lit stained-glass windows
 
-The white exterior wall film is opaque. The two openings are cut through the film and plywood; the colored inserts are printed separately on translucent/backlit film and attached from inside.
+The white exterior wall film is opaque. The two openings are cut through the film and plywood; colored inserts are printed separately on translucent/backlit film and attached from inside.
 
 - Left window centre: **1047.5 mm**.
 - Right window centre: **2733.5 mm**.
@@ -51,7 +57,7 @@ The white exterior wall film is opaque. The two openings are cut through the fil
 - Pointed-arch height: **86 mm**.
 - Mounting bleed: **8 mm**.
 
-The raster opening masks and the SVG/PDF cut contours use the same geometry.
+The raster opening masks and SVG/PDF cut contours use the same geometry.
 
 ### Attic floor
 
@@ -68,18 +74,20 @@ Every plank piece receives its own grain, knots, tonal variation and random seed
 
 ```text
 facade-print/
-├── config.json                         Editable dimensions and generation settings
-├── requirements.txt                    Python dependencies
-├── Makefile                            Convenience command
-├── assets/                             Realistic wall source, stored directly or as Base64 chunks
+├── config.json
+├── requirements.txt
+├── Makefile
+├── assets/
 ├── scripts/
-│   ├── textures.py                     Physically scaled wood generator
-│   ├── stained_glass.py                Editable vector stained-glass generator
-│   ├── common.py                       Geometry and export helpers
-│   └── generate_print_package.py       Wall, quoins, cuts, floor and diagnostics
-└── generated/                          Generated print and diagnostic files
+│   ├── textures.py
+│   ├── stained_glass.py
+│   ├── common.py
+│   ├── wall_preprocess.py
+│   ├── generate_print_package.py
+│   └── generate_print_package_v2.py
+└── generated/
 
-.github/workflows/facade-print.yml      Builds downloadable PDFs/SVGs as an Actions artifact
+.github/workflows/facade-print.yml
 ```
 
 ## Reproduce
@@ -91,7 +99,7 @@ cd facade-print
 python -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python scripts/generate_print_package.py --config config.json --output generated
+python scripts/generate_print_package_v2.py --config config.json --output generated
 ```
 
 Or:
@@ -100,17 +108,20 @@ Or:
 make generate
 ```
 
-The output is deterministic. `random_seed` controls quoin texture variation, wood grain, plank widths, board lengths and joints.
+The output is deterministic. `random_seed` controls masonry replacement choices, quoin texture variation, wood grain, plank widths, board lengths and joints.
 
 ## Modify
 
 Dimensions are in `config.json`:
 
 - `wall.segments_mm` — panels and rear overlap;
+- `wall.buttress_removal.zones` — exact original-buttress areas and plain-masonry clone sources;
+- `wall.buttress_removal.feather_mm` — blend width at replacement edges;
 - `wall.corner_quoins.boundary_indexes` — segment boundaries that receive quoins;
 - `wall.corner_quoins.row_height_mm` — quoin course height;
 - `wall.corner_quoins.long_leg_mm` / `short_leg_mm` — alternating distances from the fold;
 - `wall.corner_quoins.mortar_mm` — gap between courses;
+- `wall.corner_quoins.fold_shadow_mm` — printed fold emphasis;
 - `entrance` — opening dimensions and radius;
 - `windows` — positions and opening geometry;
 - `floor.dpi` — floor raster resolution;
@@ -125,4 +136,4 @@ Dimensions are in `config.json`:
 2. Stained glass: translucent/backlit film, without opaque white underprint behind colored areas.
 3. Attic floor: exterior PVC with matte UV laminate rated for horizontal exposure.
 
-Print all PDFs at **100%**, never `Fit to page`. The print shop should convert colors using its own printer/ink/film ICC profile and first test color, adhesion and the actual LED backlighting.
+Print all PDFs at **100%**, never `Fit to page`. The print shop should convert colors using its own printer/ink/film ICC profile and first test color, adhesion and actual LED backlighting.
