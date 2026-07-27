@@ -21,9 +21,6 @@
       "rear_half_right",
       "rear_overlap"
     ],
-    "rear_seam_buttress_source_center_mm": 3675.0,
-    "rear_seam_buttress_half_width_mm": 58.0,
-    "rear_seam_buttress_feather_mm": 10.0,
     "corner_quoins": {
       "enabled": true,
       "boundary_indexes": [
@@ -32,15 +29,62 @@
         3,
         4
       ],
-      "row_height_mm": 55.0,
-      "long_leg_mm": 150.0,
-      "short_leg_mm": 105.0,
-      "mortar_mm": 3.0,
-      "fold_shadow_mm": 1.5,
+      "row_height_mm": 62.0,
+      "long_leg_mm": 185.0,
+      "short_leg_mm": 135.0,
+      "mortar_mm": 4.0,
+      "fold_shadow_mm": 2.5,
       "start_y_mm": 0.0,
-      "texture_source_center_mm": 3675.0,
-      "texture_source_half_width_mm": 58.0,
-      "texture_source_inner_half_width_mm": 34.0
+      "texture_source_half_width_mm": 130.0,
+      "texture_source_center_mm": 820.0
+    },
+    "buttress_removal": {
+      "enabled": true,
+      "feather_mm": 18.0,
+      "zones": [
+        {
+          "start_mm": 90.0,
+          "end_mm": 330.0,
+          "source_center_mm": 790.0,
+          "flip": false
+        },
+        {
+          "start_mm": 485.0,
+          "end_mm": 690.0,
+          "source_center_mm": 790.0,
+          "flip": true
+        },
+        {
+          "start_mm": 1335.0,
+          "end_mm": 1525.0,
+          "source_center_mm": 1210.0,
+          "flip": false
+        },
+        {
+          "start_mm": 2285.0,
+          "end_mm": 2410.0,
+          "source_center_mm": 2520.0,
+          "flip": true
+        },
+        {
+          "start_mm": 3015.0,
+          "end_mm": 3210.0,
+          "source_center_mm": 2890.0,
+          "flip": false
+        },
+        {
+          "start_mm": 3280.0,
+          "end_mm": 3530.0,
+          "source_center_mm": 790.0,
+          "flip": false
+        },
+        {
+          "start_mm": 3590.0,
+          "end_mm": 3780.0,
+          "source_center_mm": 790.0,
+          "flip": true
+        }
+      ]
     }
   },
   "entrance": {
