@@ -5,11 +5,43 @@
     "width_mm": 3875.0,
     "height_mm": 610.0,
     "top_fold_mm": 40.0,
-    "segments_mm": [498.5, 925.0, 998.0, 925.0, 498.5, 30.0],
-    "segment_names": ["rear_half_left", "left", "front", "right", "rear_half_right", "rear_overlap"],
+    "segments_mm": [
+      498.5,
+      925.0,
+      998.0,
+      925.0,
+      498.5,
+      30.0
+    ],
+    "segment_names": [
+      "rear_half_left",
+      "left",
+      "front",
+      "right",
+      "rear_half_right",
+      "rear_overlap"
+    ],
     "rear_seam_buttress_source_center_mm": 3675.0,
     "rear_seam_buttress_half_width_mm": 58.0,
-    "rear_seam_buttress_feather_mm": 10.0
+    "rear_seam_buttress_feather_mm": 10.0,
+    "corner_quoins": {
+      "enabled": true,
+      "boundary_indexes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "row_height_mm": 55.0,
+      "long_leg_mm": 150.0,
+      "short_leg_mm": 105.0,
+      "mortar_mm": 3.0,
+      "fold_shadow_mm": 1.5,
+      "start_y_mm": 0.0,
+      "texture_source_center_mm": 3675.0,
+      "texture_source_half_width_mm": 58.0,
+      "texture_source_inner_half_width_mm": 34.0
+    }
   },
   "entrance": {
     "bottom_width_mm": 604.0,
@@ -18,7 +50,10 @@
     "corner_radius_mm": 87.5
   },
   "windows": {
-    "centers_x_mm": [1047.5, 2733.5],
+    "centers_x_mm": [
+      1047.5,
+      2733.5
+    ],
     "top_mm": 118.0,
     "width_mm": 90.0,
     "height_mm": 294.0,
@@ -42,6 +77,6 @@
     "joint_clearance_mm": 45.0
   },
   "assets": {
-    "wall_base": "assets/wall_artwork_realistic_75dpi.png"
+    "wall_base": "assets/wall_artwork_realistic_75dpi.jpg"
   }
 }
